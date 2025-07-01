@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sivvy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-30 22:10+0200\n"
+"POT-Creation-Date: 2025-07-01 14:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,196 +20,241 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: sivvy.py\n"
 
-#: sivvy.py:115
+#: sivvy.py:120
 msgid "Press Enter to continue..."
 msgstr ""
 
-#: sivvy.py:142
+#: sivvy.py:132
+msgid "Status Messages:"
+msgstr ""
+
+#: sivvy.py:138
+msgid "(Showing last 5 messages - enter 's' to see all)"
+msgstr ""
+
+#: sivvy.py:152
+msgid "all"
+msgstr ""
+
+#: sivvy.py:152
+msgid "recent"
+msgstr ""
+
+#: sivvy.py:154
+#, python-format
+msgid "Message display mode: %(mode)s"
+msgstr ""
+
+#: sivvy.py:174
 msgid "No column names entered. Using default headers."
 msgstr ""
 
-#: sivvy.py:151
+#: sivvy.py:183
 #, python-format
 msgid ""
 "Warning: Invalid output format '%(format)s' entered. Falling back to default "
 "format 'simple'."
 msgstr ""
 
-#: sivvy.py:162
+#: sivvy.py:194
 #, python-format
 msgid "File '%(file)s' is empty. Please enter column names:"
 msgstr ""
 
-#: sivvy.py:169
+#: sivvy.py:201
 #, python-format
 msgid "Created empty new file '%(file)s' with headers."
 msgstr ""
 
-#: sivvy.py:184
+#: sivvy.py:215
 #, python-format
 msgid "Loaded file '%(file)s' with %(rows)s rows."
 msgstr ""
 
-#: sivvy.py:194
+#: sivvy.py:224
 msgid "File exists but appears to be empty after reading."
 msgstr ""
 
-#: sivvy.py:202
+#: sivvy.py:232
 #, python-format
 msgid "File '%(file)s' not found. Creating a new file."
 msgstr ""
 
-#: sivvy.py:212
+#: sivvy.py:241
 #, python-format
 msgid "Permission denied: Cannot read file '%(file)s'."
 msgstr ""
 
-#: sivvy.py:219
+#: sivvy.py:248
 #, python-format
 msgid "File encoding error: %(error)s. Trying different encoding..."
 msgstr ""
 
-#: sivvy.py:233
+#: sivvy.py:262
 #, python-format
 msgid "Detected delimiter: '%(delimiter)s'"
 msgstr ""
 
-#: sivvy.py:241
+#: sivvy.py:270
 #, python-format
 msgid "Could not detect delimiter automatically: %(error)s. Using comma (,)."
 msgstr ""
 
-#: sivvy.py:247
+#: sivvy.py:276
 #, python-format
 msgid ""
 "Unexpected error during delimiter detection: %(error)s. Using comma (,)."
 msgstr ""
 
-#: sivvy.py:259
+#: sivvy.py:288
 #, python-format
 msgid "Trying encoding: %(encoding)s"
 msgstr ""
 
-#: sivvy.py:278
+#: sivvy.py:307
 #, python-format
 msgid "Successfully loaded with encoding %(encoding)s."
 msgstr ""
 
-#: sivvy.py:288
+#: sivvy.py:316
 #, python-format
 msgid "Error with encoding %(encoding)s: %(error)s"
 msgstr ""
 
-#: sivvy.py:294
+#: sivvy.py:322
 msgid "Could not read file with any supported encoding. File may be corrupted."
 msgstr ""
 
-#: sivvy.py:312
+#: sivvy.py:340
 #, python-format
 msgid "Saved changes in '%(file)s'."
 msgstr ""
 
-#: sivvy.py:314
+#: sivvy.py:342
 #, python-format
 msgid "Error saving '%(file)s': %(error)s"
 msgstr ""
 
-#: sivvy.py:316
+#: sivvy.py:344
 #, python-format
 msgid "An unexpected error occurred while saving: %(error)s"
 msgstr ""
 
-#: sivvy.py:329
+#: sivvy.py:357
 #, python-format
 msgid "Displaying rows %(start)s to %(end)s"
 msgstr ""
 
-#: sivvy.py:331
+#: sivvy.py:359
 msgid "Invalid or empty display range. Loading the entire file."
 msgstr ""
 
-#: sivvy.py:343
+#: sivvy.py:371
 msgid "Index"
 msgstr ""
 
-#: sivvy.py:347
+#: sivvy.py:375
 msgid "Editing column headers"
 msgstr ""
 
-#: sivvy.py:348 sivvy.py:384
+#: sivvy.py:376 sivvy.py:415
 msgid "Enter new values. Leave empty to retain the current value."
 msgstr ""
 
-#: sivvy.py:352
+#: sivvy.py:380
 #, python-format
 msgid "Column %(num)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:359
+#: sivvy.py:387
 msgid "Column headers have been updated."
 msgstr ""
 
-#: sivvy.py:368
+#: sivvy.py:396
 #, python-format
 msgid ""
 "Row index %(index)s is higher than the maximum number of rows (%(maxrows)s)."
 msgstr ""
 
-#: sivvy.py:369
+#: sivvy.py:397
 #, python-format
 msgid "Should the gap be filled with %(rows)s empty rows?"
 msgstr ""
 
-#: sivvy.py:375
+#: sivvy.py:402
 #, python-format
-msgid "Adding new row at position %(index)s."
+msgid "Added %(rows)s empty rows."
 msgstr ""
 
-#: sivvy.py:379
+#: sivvy.py:410
 #, python-format
 msgid "Adding new row %(index)s."
 msgstr ""
 
-#: sivvy.py:383
+#: sivvy.py:414
 #, python-format
 msgid "Editing row %(index)s"
 msgstr ""
 
-#: sivvy.py:389
+#: sivvy.py:420
 #, python-format
 msgid "%(header)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:397
+#: sivvy.py:428
 #, python-format
 msgid "Row %(index)s has been updated."
 msgstr ""
 
-#: sivvy.py:409
-msgid "Enter row index to add/edit (0 for headers, 'q' to exit)"
-msgstr ""
-
-#: sivvy.py:410
-msgid "Command: "
-msgstr ""
-
-#: sivvy.py:417
-msgid "Exit and save changes"
-msgstr ""
-
-#: sivvy.py:421
-msgid "Aborted."
-msgstr ""
-
-#: sivvy.py:433
-msgid "Invalid row index. Please enter a positive value or 0 for headers."
+#: sivvy.py:435
+msgid "Welcome to Sivvy!"
 msgstr ""
 
 #: sivvy.py:443
+msgid "Commands:"
+msgstr ""
+
+#: sivvy.py:444
+msgid "- Enter row number to edit (0 for headers)"
+msgstr ""
+
+#: sivvy.py:445
+msgid "- 's' to toggle status message display"
+msgstr ""
+
+#: sivvy.py:446
+msgid "- 'c' to clear status messages"
+msgstr ""
+
+#: sivvy.py:447
+msgid "- 'q' to exit"
+msgstr ""
+
+#: sivvy.py:448
+msgid "Command: "
+msgstr ""
+
+#: sivvy.py:451
+msgid "Exit and save changes"
+msgstr ""
+
+#: sivvy.py:455
+msgid "Aborted."
+msgstr ""
+
+#: sivvy.py:464
+msgid "Status messages cleared."
+msgstr ""
+
+#: sivvy.py:476
+msgid "Invalid row index. Please enter a positive value or 0 for headers."
+msgstr ""
+
+#: sivvy.py:485
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 
-#: sivvy.py:449
+#: sivvy.py:490
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr ""

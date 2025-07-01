@@ -9,6 +9,7 @@ import csv
 import re
 import argparse
 import signal
+import time
 from pathlib import Path
 from io import StringIO
 from tabulate import tabulate
@@ -37,8 +38,9 @@ class Sivvy:
         if os.name == 'nt': os.system('title Sivvy')
 
         # Status message system
-        self.persistent_message = ""
-        self.message_type = None  # 'info', 'warning', 'error', None
+        self.status_messages = []
+        self.max_status_messages = 10
+        self.show_all_messages = False
 
         # Parameters
         self.filename = filename
@@ -87,7 +89,7 @@ class Sivvy:
         gettext.textdomain('sivvy')
         self._ = gettext.gettext
 
-    def show_message(self, message, msg_type='info', persist=False, pause=False):
+    def show_message(self, message, msg_type='info', pause=False, store=True):
         """
         Unified message handling system.
 
@@ -96,23 +98,63 @@ class Sivvy:
             msg_type (str): 'info', 'warning', 'error' - determines formatting and behavior
             persist (bool): Whether message should persist across screen clears
             pause (bool): Whether to pause for user input after displaying
+            store (bool): Whether to store message in status list
         """
 
         # Format message based on type
         formatted_message = self._format_message(message, msg_type)
 
-        # Handle persistence
-        if persist:
-            self.persistent_message = formatted_message
-            self.message_type = msg_type
+        if store:
+            self.status_messages.append({
+                'message': formatted_message,
+                'type': msg_type,
+                'timestamp': self._get_current_time()
+            })
 
-        # Always display error messages immediately
-        # Display other messages immediately if requested or if they're warnings
-        if msg_type == 'error' or pause or msg_type == 'warning':
+            if len(self.status_messages) > self.max_status_messages:
+                self.status_messages.pop(0)
+
+        if msg_type == 'error' or msg_type == 'warning' or pause:
             print(formatted_message)
-
             if pause or msg_type == 'error':
                 input(self._("Press Enter to continue..."))
+
+    def _get_current_time(self):
+        """Returns a simple timestamp."""
+        return time.strftime("%H:%M:%S")
+
+    def display_status_messages(self):
+        """Show all saved status messages."""
+        if not self.status_messages:
+            return
+
+        print("="*50)
+        print(self._("Status Messages:"))
+        print("="*50)
+
+        messages_to_show = self.status_messages
+        if not self.show_all_messages and len(self.status_messages) > 5:
+            messages_to_show = self.status_messages[-5:]
+            print(self._("(Showing last 5 messages - enter 's' to see all)"))
+
+        for msg in messages_to_show:
+            print(f"[{msg['timestamp']}] {msg['message']}")
+
+        print("="*50)
+
+    def clear_status_messages(self):
+        """Deletes all saved messages."""
+        self.status_messages = []
+
+    def toggle_message_display(self):
+        """Switches between compact and full message display."""
+        self.show_all_messages = not self.show_all_messages
+        status = self._("all") if self.show_all_messages else self._("recent")
+        self.show_message(
+            self._("Message display mode: %(mode)s") % {'mode': status}, 
+            'info', 
+            store=False
+        )
 
     def _format_message(self, message, msg_type):
         """Format message based on type."""
@@ -122,16 +164,6 @@ class Sivvy:
             return f"⚠  {message}"   # Warning icon
         else:
             return f"ℹ  {message}"    # Info icon
-
-    def clear_persistent_message(self):
-        """Clear the persistent message."""
-        self.persistent_message = ""
-        self.message_type = None
-
-    def display_persistent_message(self):
-        """Display persistent message if one exists."""
-        if self.persistent_message:
-            print(self.persistent_message)
 
     def _get_headers_from_user(self, message):
         """Prompts the user to enter column names."""
@@ -148,7 +180,7 @@ class Sivvy:
         if table_format in self.SUPPORTED_TABLE_FORMATS:
             self.table_format = table_format
         else:
-            self.show_message(self._("Warning: Invalid output format '%(format)s' entered. Falling back to default format 'simple'.") % {'format': self.table_format}, 'warning', pause=True)
+            self.show_message(self._("Warning: Invalid output format '%(format)s' entered. Falling back to default format 'simple'.") % {'format': table_format}, 'warning')
             self.table_format = "simple"
 
     def _load_csv(self):
@@ -167,8 +199,7 @@ class Sivvy:
                     self._save_csv(initial_save=True)
                     self.show_message(
                         self._("Created empty new file '%(file)s' with headers.") % {'file': self.filename}, 
-                        'info', 
-                        pause=True
+                        'info'
                     )
                     return
                 self.delimiter = self._detect_delimiter_from_content(content)
@@ -185,8 +216,7 @@ class Sivvy:
                             'file': self.filename, 
                             'rows': len(self.data)
                         }, 
-                        'info', 
-                        persist=True
+                        'info'
                     )
 
                 except StopIteration:
@@ -201,7 +231,6 @@ class Sivvy:
             self.show_message(
                 self._("File '%(file)s' not found. Creating a new file.") % {'file': self.filename}, 
                 'warning',
-                pause=True
             )
             self.headers = self._get_headers_from_user()
             self.delimiter = ','
@@ -276,8 +305,7 @@ class Sivvy:
 
                     self.show_message(
                         self._("Successfully loaded with encoding %(encoding)s.") % {'encoding': encoding},
-                        'info',
-                        persist=True
+                        'info'
                     )
                     return
 
@@ -328,7 +356,7 @@ class Sivvy:
                 data_to_display = self.data[start_row:end_row]
                 print("\n--- " + self._("Displaying rows %(start)s to %(end)s") % {'start': start_row + 1, 'end': end_row} + " ---")
             else:
-                self.show_message("\n" + self._("Invalid or empty display range. Loading the entire file."), 'warning', pause=True)
+                self.show_message("\n" + self._("Invalid or empty display range. Loading the entire file."), 'warning')
                 data_to_display = self.data 
                 self.display_range = None
                 start_row, end_row = None, None
@@ -356,7 +384,7 @@ class Sivvy:
                 new_headers.append(new_value)
 
         self.headers = new_headers
-        self.show_message(self._("Column headers have been updated."), 'info', persist=True)
+        self.show_message(self._("Column headers have been updated."), 'info')
 
     def _edit_or_add_row(self, row_index):
         """Edits an existing row or adds a new one."""
@@ -370,13 +398,16 @@ class Sivvy:
                 if fill_gap == 'y':
                     for _ in range(row_index - original_row_count):
                         self.data.append([''] * len(self.headers))
+                    self.show_message(
+                        self._("Added %(rows)s empty rows.") % {'rows': row_index - original_row_count}, 
+                        'info'
+                    )
                 else:
                     row_index = original_row_count
-                    print(self._("Adding new row at position %(index)s.") % {'index': row_index + 1})
 
             new_row = [''] * len(self.headers)
             self.data.append(new_row)
-            print(self._("Adding new row %(index)s.") % {'index': row_index + 1})
+            self.show_message(self._("Adding new row %(index)s.") % {'index': row_index + 1}, 'info')
 
         row_to_edit = self.data[row_index] 
 
@@ -394,34 +425,46 @@ class Sivvy:
 
         self.data[row_index] = edited_row 
 
-        self.show_message(self._("Row %(index)s has been updated.") % {'index': row_index + 1}, 'info', persist=True)
+        self.show_message(self._("Row %(index)s has been updated.") % {'index': row_index + 1}, 'info')
 
     def run(self):
         """Main editor loop"""
         while True:
             self.clear_console()
 
-            # Always show persistent message after clearing
-            self.display_persistent_message()
+            print(self._("Welcome to Sivvy!"))
+
+            # Show status messages above the table
+            self.display_status_messages()
 
             self.display_table()
             
-            print("\n" + self._("Enter row index to add/edit (0 for headers, 'q' to exit)"))
+            print("="*50)
+            print(self._("Commands:"))
+            print(self._("- Enter row number to edit (0 for headers)"))
+            print(self._("- 's' to toggle status message display"))
+            print(self._("- 'c' to clear status messages"))
+            print(self._("- 'q' to exit"))
             user_input = input(self._("Command: ")).strip().lower()
-
-            # Clear non-error persistent messages after successful input
-            if self.message_type != 'error':
-                self.clear_persistent_message()
 
             if user_input == 'q':
                 confirm_exit = input(self._("Exit and save changes") + " (y/n): ").strip().lower()
                 if confirm_exit == 'y':
                     break
                 else:
-                    self.show_message(self._("Aborted."), 'info', persist=True)
+                    self.show_message(self._("Aborted."), 'info')
                     continue
 
-            if user_input == '0':
+            elif user_input == 's':
+                self.toggle_message_display()
+                continue
+
+            elif user_input == 'c':
+                self.clear_status_messages()
+                self.show_message(self._("Status messages cleared."), 'info')
+                continue
+
+            elif user_input == '0':
                 self._edit_headers()
                 continue
 
@@ -431,8 +474,7 @@ class Sivvy:
                 if row_index < 0:
                     self.show_message(
                         self._("Invalid row index. Please enter a positive value or 0 for headers."), 
-                        'warning', 
-                        persist=True
+                        'warning'
                     )
                     continue
 
@@ -441,14 +483,12 @@ class Sivvy:
             except ValueError:
                 self.show_message(
                     self._("Invalid input. Please enter a number, '0' for headers, or 'q' to exit."), 
-                    'warning', 
-                    persist=True
+                    'warning'
                 )
             except Exception as e:
                 self.show_message(
                     self._("An unexpected error occurred: %(error)s") % {'error': e}, 
-                    'error', 
-                    persist=True
+                    'error'
                 )
 
         self._save_csv()
