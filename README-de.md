@@ -16,7 +16,7 @@ Sivvy (eine Art Kosename für CSV) ist ein Terminal-Editor zum Erstellen und Bea
 
 ## Installation
 
-Einfach das Repository laden und Python-Abhängigkeiten via Pip oder die Paketverwaltung des Betriebssystmesinstallieren: 
+Einfach das Repository laden und Python-Abhängigkeiten via Pip oder die Paketverwaltung des Betriebssystems installieren: 
 
 `pip install -r requirements.txt`. 
 
