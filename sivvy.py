@@ -440,12 +440,7 @@ class Sivvy:
             self.display_table()
             
             print("="*50)
-            print(self._("Commands:"))
-            print(self._("- Enter row number to edit (0 for headers)"))
-            print(self._("- 's' to toggle status message display"))
-            print(self._("- 'c' to clear status messages"))
-            print(self._("- 'q' to exit"))
-            user_input = input(self._("Command: ")).strip().lower()
+            user_input = input(self._("Command ('h' for help): ")).strip().lower()
 
             if user_input == 'q':
                 confirm_exit = input(self._("Exit and save changes") + " (y/n): ").strip().lower()
@@ -462,6 +457,15 @@ class Sivvy:
             elif user_input == 'c':
                 self.clear_status_messages()
                 self.show_message(self._("Status messages cleared."), 'info')
+                continue
+
+            elif user_input == 'h':
+                print(self._("Commands:"))
+                print(self._("- Enter row number to edit (0 for headers)"))
+                print(self._("- 's' to toggle status message display"))
+                print(self._("- 'c' to clear status messages"))
+                print(self._("- 'q' to exit"))
+                input(self._("Press Enter to continue..."))
                 continue
 
             elif user_input == '0':
