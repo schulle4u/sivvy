@@ -28,6 +28,17 @@ Man kann auch das Script mittels Pyinstaller in eine ausführbare Programmdatei 
 
 Die fertige Programmdatei befindet sich danach im Dist-Ordner. 
 
+## Verwendung
+
+Nach dem Öffnen einer CSV-Datei wird die Tabelle als formatierte Ausgabe auf dem Bildschirm angezeigt. Zusätzlich zu den eigentlichen Tabellenspalten wird in der ersten Spalte der Zeilenindex, also die Nummer der Tabellenzeile, angegeben. Der Editor geht davon aus, dass die erste Zeile der Tabelle immer die Spaltenköpfe enthält. Daher ist der Zeilenindex 1 nicht die Kopfzeile, sondern die erste Datenzeile. Um eine Zeile zu bearbeiten oder neu zu erstellen, wird einfach der entsprechende Zeilenindex in die Befehlszeile unterhalb der Tabelle eingegeben und mit der Enter-Taste bestätigt. Danach öffnet sich der Bearbeitungsbildschirm, in dem man einen neuen Datensatz erfassen oder bestehende Zeilen bearbeiten kann. Um die Kopfzeile zu ändern, muss als Zeilenindex 0 eingegeben werden. Oberhalb der Tabelle befindet sich die Statusanzeige, die alle Erfolgs- und etwaige Fehlermeldungen anzeigt.
+
+Sivvy unterstützt einige einfache Befehle zur Steuerung des Programms. Eine Liste aller Befehle kann jederzeit mit "h" über die Befehlszeile abgerufen werden.
+
+* "s" zum Umschalten der Statusmeldungsanzeige (alle oder nur die neusten 5 meldungen)
+* "c" zum Bereinigen der Statusmeldungen
+* "h" zum Anzeigen der Befehlsliste
+* "q" zum Beenden des Programms
+
 ## Entwicklung
 
 Copyright (C) Steffen Schultz, freigegeben unter den Bedingungen der MIT-Lizenz. 
