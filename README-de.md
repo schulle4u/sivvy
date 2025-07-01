@@ -3,7 +3,7 @@ Ein CSV-Editor für das Terminal.
 
 ## Über Sivvy
 
-Sivvy (eine Art Kosename für CSV) ist ein Terminal-Editor zum Erstellen und Bearbeiten von CSV-Tabellen. Er wurde in Python geschrieben und verwendet die integrierten CSV-Funktionen zum Öffnen und Bearbeiten der Dateien. Für die Anzeige der Daten nutzt Sivvy {Python Tabulate](https://pypi.org/project/tabulate/), wodurch zahlreiche Ausgabeformate und Designs zur Verfügung stehen. Es ist nur ein persönliches Tool, welches ich zur Verwaltung von digitalen Archivbeständen verwende, und erhebt keinen Anspruch darauf, die zahlreichen anderen Lösungen zur Visualisierung von CSV-Datensätzen zu ergänzen oder gar zu bereichern. Fehlerkorrekturen und Verbesserungsvorschläge sind natürlich trotzdem herzlich willkommen. 
+Sivvy (eine Art Kosename für CSV) ist ein Terminal-Editor zum Erstellen und Bearbeiten von CSV-Tabellen. Er wurde in Python geschrieben und verwendet die integrierten CSV-Funktionen zum Öffnen und Bearbeiten der Dateien. Für die Anzeige der Daten nutzt Sivvy [Python Tabulate](https://pypi.org/project/tabulate/), wodurch zahlreiche Ausgabeformate und Designs zur Verfügung stehen. Es ist nur ein persönliches Tool, welches ich zur Verwaltung von digitalen Archivbeständen verwende, und erhebt keinen Anspruch darauf, die zahlreichen anderen Lösungen zur Visualisierung von CSV-Datensätzen zu ergänzen oder gar zu bereichern. Fehlerkorrekturen und Verbesserungsvorschläge sind natürlich trotzdem herzlich willkommen. 
 
 ## Funktionen
 
