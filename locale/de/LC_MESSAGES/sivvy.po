@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:49+0200\n"
-"PO-Revision-Date: 2025-07-01 15:34+0200\n"
+"POT-Creation-Date: 2025-07-01 16:29+0200\n"
+"PO-Revision-Date: 2025-07-01 16:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -44,6 +44,10 @@ msgstr "neueste"
 #, python-format
 msgid "Message display mode: %(mode)s"
 msgstr "Anzeigemodus: %(mode)s"
+
+#: sivvy.py:171
+msgid "Column names: "
+msgstr "Spaltennamen: "
 
 #: sivvy.py:174
 msgid "No column names entered. Using default headers."

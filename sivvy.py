@@ -165,10 +165,10 @@ class Sivvy:
         else:
             return f"ℹ  {message}"    # Info icon
 
-    def _get_headers_from_user(self, message):
+    def _get_headers_from_user(self):
         """Prompts the user to enter column names."""
-        print(message)
-        header_input = input("Column names: ")
+        # print(message)
+        header_input = input(self._("Column names: "))
         headers = [h.strip() for h in header_input.split(',') if h.strip()]
         if not headers:
             self.show_message(self._("No column names entered. Using default headers."), 'info')

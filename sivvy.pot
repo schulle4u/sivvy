@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sivvy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 14:49+0200\n"
+"POT-Creation-Date: 2025-07-01 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr ""
 #: sivvy.py:154
 #, python-format
 msgid "Message display mode: %(mode)s"
+msgstr ""
+
+#: sivvy.py:171
+msgid "Column names: "
 msgstr ""
 
 #: sivvy.py:174
