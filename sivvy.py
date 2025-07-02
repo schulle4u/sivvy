@@ -167,7 +167,7 @@ class Sivvy:
 
     def _get_headers_from_user(self):
         """Prompts the user to enter column names."""
-        # print(message)
+        print(self._("Please enter column names separated by commas."))
         header_input = input(self._("Column names: "))
         headers = [h.strip() for h in header_input.split(',') if h.strip()]
         if not headers:
@@ -370,6 +370,7 @@ class Sivvy:
 
         indexed_headers = [self._("Index")] + self.headers
         print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True))
+
     def _edit_headers(self):
         """Edits the column headers."""
         print("\n--- " + self._("Editing column headers") + " ---")
@@ -413,7 +414,7 @@ class Sivvy:
 
         print("\n--- " + self._("Editing row %(index)s") % {'index': row_index + 1} + " ---")
         print(self._("Enter new values. Leave empty to retain the current value."))
-        
+
         edited_row = []
         for i, header in enumerate(self.headers):
             current_value = row_to_edit[i] if i < len(row_to_edit) else ''
@@ -438,7 +439,7 @@ class Sivvy:
             self.display_status_messages()
 
             self.display_table()
-            
+
             print("="*50)
             user_input = input(self._("Command ('h' for help): ")).strip().lower()
 
@@ -508,7 +509,7 @@ def main():
         "filename",
         help="Csv file path, will be created if it doesn't exist."
     )
-    
+
     parser.add_argument(
         "-r", "--range",
         type=str,

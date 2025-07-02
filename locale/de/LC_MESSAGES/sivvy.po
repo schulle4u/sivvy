@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 21:16+0200\n"
-"PO-Revision-Date: 2025-07-01 21:17+0200\n"
+"POT-Creation-Date: 2025-07-02 10:38+0200\n"
+"PO-Revision-Date: 2025-07-02 10:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: sivvy.py:120 sivvy.py:468
+#: sivvy.py:120 sivvy.py:469
 msgid "Press Enter to continue..."
 msgstr "Fortfahren mit Enter..."
 
@@ -44,6 +44,10 @@ msgstr "neueste"
 #, python-format
 msgid "Message display mode: %(mode)s"
 msgstr "Anzeigemodus: %(mode)s"
+
+#: sivvy.py:170
+msgid "Please enter column names separated by commas."
+msgstr "Bitte Spaltennamen durch Kommas getrennt eingeben."
 
 #: sivvy.py:171
 msgid "Column names: "
@@ -165,113 +169,113 @@ msgstr "Ungültiger oder leerer Anzeigebereich. Die gesamte Datei wird geladen."
 msgid "Index"
 msgstr "Zeile"
 
-#: sivvy.py:375
+#: sivvy.py:376
 msgid "Editing column headers"
 msgstr "Bearbeite Spaltenköpfe"
 
-#: sivvy.py:376 sivvy.py:415
+#: sivvy.py:377 sivvy.py:416
 msgid "Enter new values. Leave empty to retain the current value."
 msgstr "Neue Werte eingeben, leer lassen um den aktuellen wert zu behalten."
 
-#: sivvy.py:380
+#: sivvy.py:381
 #, python-format
 msgid "Column %(num)s (current: '%(current)s'): "
 msgstr "Spalte %(num)s (aktuell: '%(current)s'): "
 
-#: sivvy.py:387
+#: sivvy.py:388
 msgid "Column headers have been updated."
 msgstr "Spaltenköpfe wurden aktualisiert."
 
-#: sivvy.py:396
+#: sivvy.py:397
 #, python-format
 msgid ""
 "Row index %(index)s is higher than the maximum number of rows (%(maxrows)s)."
 msgstr ""
 "Zeilenindex %(index)s ist höher als die maximale Zeilenanzahl (%(maxrows)s)."
 
-#: sivvy.py:397
+#: sivvy.py:398
 #, python-format
 msgid "Should the gap be filled with %(rows)s empty rows?"
 msgstr "Soll die Lücke mit %(rows)s leeren Zeilen aufgefüllt werden?"
 
-#: sivvy.py:402
+#: sivvy.py:403
 #, python-format
 msgid "Added %(rows)s empty rows."
 msgstr "%(rows)s leere Zeilen eingefügt."
 
-#: sivvy.py:410
+#: sivvy.py:411
 #, python-format
 msgid "Adding new row %(index)s."
 msgstr "Erstelle neue Zeile %(index)s."
 
-#: sivvy.py:414
+#: sivvy.py:415
 #, python-format
 msgid "Editing row %(index)s"
 msgstr "Bearbeite Zeile %(index)s"
 
-#: sivvy.py:420
+#: sivvy.py:421
 #, python-format
 msgid "%(header)s (current: '%(current)s'): "
 msgstr "%(header)s (aktuell: '%(current)s'): "
 
-#: sivvy.py:428
+#: sivvy.py:429
 #, python-format
 msgid "Row %(index)s has been updated."
 msgstr "Zeile %(index)s wurde aktualisiert."
 
-#: sivvy.py:435
+#: sivvy.py:436
 msgid "Welcome to Sivvy!"
 msgstr "Willkommen bei Sivvy!"
 
-#: sivvy.py:443
+#: sivvy.py:444
 msgid "Command ('h' for help): "
 msgstr "Befehl ('h' für Hilfe): "
 
-#: sivvy.py:446
+#: sivvy.py:447
 msgid "Exit and save changes"
 msgstr "Beenden und Änderungen speichern"
 
-#: sivvy.py:450
+#: sivvy.py:451
 msgid "Aborted."
 msgstr "Abbruch."
 
-#: sivvy.py:459
+#: sivvy.py:460
 msgid "Status messages cleared."
 msgstr "Statusmeldungen gelöscht."
 
-#: sivvy.py:463
+#: sivvy.py:464
 msgid "Commands:"
 msgstr "Befehle:"
 
-#: sivvy.py:464
+#: sivvy.py:465
 msgid "- Enter row number to edit (0 for headers)"
 msgstr "- Zeilenindex zum Bearbeiten eingeben (0 für Spaltenköpfe)"
 
-#: sivvy.py:465
+#: sivvy.py:466
 msgid "- 's' to toggle status message display"
 msgstr "- 's' zum Umschalten der Statusmeldungsanzeige"
 
-#: sivvy.py:466
+#: sivvy.py:467
 msgid "- 'c' to clear status messages"
 msgstr "- 'c' zum Bereinigen der Statusmeldungen"
 
-#: sivvy.py:467
+#: sivvy.py:468
 msgid "- 'q' to exit"
 msgstr "- 'q' zum Beenden"
 
-#: sivvy.py:480
+#: sivvy.py:481
 msgid "Invalid row index. Please enter a positive value or 0 for headers."
 msgstr ""
 "Ungültiger Zeilenindex. Bitte einen positiven Wert eingeben oder 0 für die "
 "Spaltenköpfe."
 
-#: sivvy.py:489
+#: sivvy.py:490
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 "Ungültige Eingabe. Bitte eine Zahl eingeben, '0' für die Spaltenköpfe, oder "
 "'q' zum Beenden."
 
-#: sivvy.py:494
+#: sivvy.py:495
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr "Ein unerwarteter Fehler ist aufgetreten: %(error)s"
