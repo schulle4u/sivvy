@@ -502,6 +502,7 @@ class Sivvy:
 def main():
     parser = argparse.ArgumentParser(
         description="A simple csv editor for your terminal.",
+        epilog="Source code is available at https://github.com/schulle4u/sivvy",
         formatter_class=argparse.RawTextHelpFormatter
     )
 
