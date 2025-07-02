@@ -30,7 +30,7 @@ The finished program file can then be found in the Dist folder.
 
 ## Usage
 
-After opening a CSV file, the table appears on the screen as formatted output. In addition to the table's actual columns, the row index — the number of the table row — is specified in the first column. The editor assumes that the first table row contains the column headers. Therefore row index 1 is the first data row, not the header row. To edit or create a new row, enter the corresponding row index in the command line below the table and press Enter. This opens the editing screen where you can enter a new data record or edit existing ones. To change the header, enter 0 as the row index. Above the table is the status display, which shows all success and error messages.
+After opening a CSV file, the table appears on the screen as formatted output. In addition to the table's actual columns, the row index - the number of the table row - is specified in the first column. The editor assumes that the first table row contains the column headers. Therefore row index 1 is the first data row, not the header row. To edit or create a new row, enter the corresponding row index in the command line below the table and press Enter. This opens the editing screen where you can enter a new data record or edit existing ones. To change the header, enter 0 as the row index. Above the table is the status display, which shows all success and error messages.
 
 Sivvy also supports a few simple commands for controlling the program. You can call up a list of all commands at any time by typing "h" in the command line.
 
