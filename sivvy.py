@@ -443,58 +443,55 @@ class Sivvy:
             print("="*50)
             user_input = input(self._("Command ('h' for help): ")).strip().lower()
 
-            if user_input == 'q':
-                confirm_exit = input(self._("Exit and save changes") + " (y/n): ").strip().lower()
-                if confirm_exit == 'y':
-                    break
-                else:
-                    self.show_message(self._("Aborted."), 'info')
+            match user_input:
+                case 'q':
+                    confirm_exit = input(self._("Exit and save changes") + " (y/n): ").strip().lower()
+                    if confirm_exit == 'y':
+                        break
+                    else:
+                        self.show_message(self._("Aborted."), 'info')
+                        continue
+                case 's':
+                    self.toggle_message_display()
                     continue
-
-            elif user_input == 's':
-                self.toggle_message_display()
-                continue
-
-            elif user_input == 'c':
-                self.clear_status_messages()
-                self.show_message(self._("Status messages cleared."), 'info')
-                continue
-
-            elif user_input == 'h':
-                print(self._("Commands:"))
-                print(self._("- Enter row number to edit (0 for headers)"))
-                print(self._("- 's' to toggle status message display"))
-                print(self._("- 'c' to clear status messages"))
-                print(self._("- 'q' to exit"))
-                input(self._("Press Enter to continue..."))
-                continue
-
-            elif user_input == '0':
-                self._edit_headers()
-                continue
-
-            try:
-                row_index = int(user_input) - 1
-
-                if row_index < 0:
-                    self.show_message(
-                        self._("Invalid row index. Please enter a positive value or 0 for headers."), 
-                        'warning'
-                    )
+                case 'c':
+                    self.clear_status_messages()
+                    self.show_message(self._("Status messages cleared."), 'info')
                     continue
+                case 'h':
+                    print(self._("Commands:"))
+                    print(self._("- Enter row number to edit (0 for headers)"))
+                    print(self._("- 's' to toggle status message display"))
+                    print(self._("- 'c' to clear status messages"))
+                    print(self._("- 'q' to exit"))
+                    input(self._("Press Enter to continue..."))
+                    continue
+                case '0':
+                    self._edit_headers()
+                    continue
+                case _:
+                    try:
+                        row_index = int(user_input) - 1
 
-                self._edit_or_add_row(row_index)
+                        if row_index < 0:
+                            self.show_message(
+                                self._("Invalid row index. Please enter a positive value or 0 for headers."), 
+                                'warning'
+                            )
+                            continue
 
-            except ValueError:
-                self.show_message(
-                    self._("Invalid input. Please enter a number, '0' for headers, or 'q' to exit."), 
-                    'warning'
-                )
-            except Exception as e:
-                self.show_message(
-                    self._("An unexpected error occurred: %(error)s") % {'error': e}, 
-                    'error'
-                )
+                        self._edit_or_add_row(row_index)
+
+                    except ValueError:
+                        self.show_message(
+                            self._("Invalid input. Please enter a number, '0' for headers, or 'q' to exit."), 
+                            'warning'
+                        )
+                    except Exception as e:
+                        self.show_message(
+                            self._("An unexpected error occurred: %(error)s") % {'error': e}, 
+                            'error'
+                        )
 
         self._save_csv()
 
