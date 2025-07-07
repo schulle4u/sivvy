@@ -14,7 +14,7 @@ Sivvy (eine Art Kosename für CSV) ist ein Terminal-Editor zum Erstellen und Bea
 * Positionsberechnung: Wenn der angegebene Zeilenindex eines neuen Datensatzes höher als die nächste freie Zeile ist, kann automatisch die nächsthöhere freie Zeile angelegt oder ein Satz Leerzeilen bis zum angegebenen Index eingefügt werden.
 * Mehrsprachigkeit: Interface in englisch und deutsch, dank Gettext-Vorlage weitere Sprachen nachrüstbar.
 
-## Installation
+## Aus dem Quellcode aufrufen
 
 Einfach das Repository laden und Python-Abhängigkeiten via Pip oder die Paketverwaltung des Betriebssystems installieren: 
 
@@ -30,7 +30,7 @@ Die fertige Programmdatei befindet sich danach im Dist-Ordner.
 
 ## Verwendung
 
-Nach dem Öffnen einer CSV-Datei wird die Tabelle als formatierte Ausgabe auf dem Bildschirm angezeigt. Zusätzlich zu den eigentlichen Tabellenspalten wird in der ersten Spalte der Zeilenindex, also die Nummer der Tabellenzeile, angegeben. Der Editor geht davon aus, dass die erste Zeile der Tabelle immer die Spaltenköpfe enthält. Daher ist der Zeilenindex 1 nicht die Kopfzeile, sondern die erste Datenzeile. Um eine Zeile zu bearbeiten oder neu zu erstellen, wird einfach der entsprechende Zeilenindex in die Befehlszeile unterhalb der Tabelle eingegeben und mit der Enter-Taste bestätigt. Danach öffnet sich der Bearbeitungsbildschirm, in dem man einen neuen Datensatz erfassen oder bestehende Zeilen bearbeiten kann. Um die Kopfzeile zu ändern, muss als Zeilenindex 0 eingegeben werden. Oberhalb der Tabelle befindet sich die Statusanzeige, die alle Erfolgs- und etwaige Fehlermeldungen anzeigt.
+Nach dem Öffnen einer CSV-Datei wird die Tabelle als formatierte Ausgabe auf dem Bildschirm angezeigt. Ist die angegebene Datei nicht vorhanden, fragt das Programm zunächst nach den Spaltenköpfen und legt die neue Datei danach an. Zusätzlich zu den eigentlichen Tabellenspalten wird in der ersten Spalte der Zeilenindex, also die Nummer der Tabellenzeile, angegeben. Der Editor geht davon aus, dass die erste Zeile der Tabelle immer die Spaltenköpfe enthält. Daher ist der Zeilenindex 1 nicht die Kopfzeile, sondern die erste Datenzeile. Um eine Zeile zu bearbeiten oder neu zu erstellen, wird einfach der entsprechende Zeilenindex in die Befehlszeile unterhalb der Tabelle eingegeben und mit der Enter-Taste bestätigt. Danach öffnet sich der Bearbeitungsbildschirm, in dem man einen neuen Datensatz erfassen oder bestehende Zeilen bearbeiten kann. Um die Kopfzeile zu ändern, muss als Zeilenindex 0 eingegeben werden. Oberhalb der Tabelle befindet sich die Statusanzeige, die alle Erfolgs- und etwaige Fehlermeldungen anzeigt.
 
 Sivvy unterstützt einige einfache Befehle zur Steuerung des Programms. Eine Liste aller Befehle kann jederzeit mit "h" über die Befehlszeile abgerufen werden.
 
