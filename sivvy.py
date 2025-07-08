@@ -477,13 +477,33 @@ class Sivvy:
             self.show_message(self._("Aborted."), 'info')
             return False
 
-    def _parse_delete_command(self, user_input):
-        """Parse delete command."""
+    def _display_row(self, row_index):
+        """Detailed row display"""
+        if row_index < 0 or row_index >= len(self.data):
+            self.show_message(
+                self._("Invalid row index %(index)s. Valid range: 1-%(max)s") % {
+                    'index': row_index + 1, 
+                    'max': len(self.data)
+                }, 
+                'warning'
+            )
+            return False
+
+        row_to_display = self.data[row_index]
+        print(f"\n--- {self._('Displaying row:')} {row_index + 1} ---")
+
+        for i, (header, value) in enumerate(zip(self.headers, row_to_display)):
+            print(f"{header}: {value}")
+
+        input(self._("Press Enter to continue..."))
+
+    def _parse_split_command(self, user_input):
+        """Parse split commands."""
         parts = user_input.split()
 
         if len(parts) != 2:
             self.show_message(
-                self._("Invalid delete command. Usage: d <row_number>"), 
+                self._("Invalid split command. Usage: <command> <row_number>"), 
                 'warning'
             )
             return None
@@ -625,6 +645,7 @@ class Sivvy:
                     print(self._("- Enter row number to edit (0 for headers)"))
                     print(self._("- 'd <row_number>' to delete a row"))
                     print(self._("- 'u' to undo/restore deleted rows"))
+                    print(self._("- 'v <row_number>' to display a row in a more detailed view"))
                     print(self._("- 's' to toggle status message display"))
                     print(self._("- 'c' to clear status messages"))
                     print(self._("- 'q' to exit"))
@@ -638,9 +659,14 @@ class Sivvy:
                     continue
                 case _:
                     if user_input.startswith('d '):
-                        row_index = self._parse_delete_command(user_input)
+                        row_index = self._parse_split_command(user_input)
                         if row_index is not None:
                             self._delete_row(row_index)
+                        continue
+                    if user_input.startswith('v '):
+                        row_index = self._parse_split_command(user_input)
+                        if row_index is not None:
+                            self._display_row(row_index)
                         continue
 
                     try:
