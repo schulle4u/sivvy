@@ -8,7 +8,7 @@ Sivvy (a kind of nickname for CSV) is a terminal editor for creating and editing
 ## Features
 
 * Numerous output formats: Simple, Grid, Markdown, HTML, and many more.
-* Commands: Line number, column headers, program control
+* Built-in commands: add/edit/delete/undo rows, column headers, program control
 * Delimiter detection: Detects common CSV delimiters and sets them when opening the file for entering new data.
 * Display range: Only displays the desired start/end rows on the screen.
 * Position calculation: If the specified row index is higher than the next available row, the row can be created automatically, or a set of empty rows can be inserted up to the specified index.
@@ -34,10 +34,13 @@ After opening a CSV file, the table appears on the screen as formatted output. I
 
 Sivvy also supports a few simple commands for controlling the program. You can call up a list of all commands at any time by typing "h" in the command line.
 
-* "s" to toggle status message display (all or 5 most recent messages)
-* "c" to clear status messages
-* "h" to print a list of available commands
-* "q" to exit the program
+* "`d <row_number>`" to delete a row
+* "`u`" to undo/restore deleted rows
+* "`v <row_number>`" to display a row in a more detailed view
+* "`s`" to toggle status message display (all or 5 most recent messages)
+* "`c`" to clear status messages
+* "`h`" to print a list of available commands
+* "`q`" to exit the program
 
 ## Development
 

@@ -8,7 +8,7 @@ Sivvy (eine Art Kosename für CSV) ist ein Terminal-Editor zum Erstellen und Bea
 ## Funktionen
 
 * Zahlreiche Ausgabeformate: Simple, Grid, Markdown, HTML und viele weitere.
-* Befehlseingabe: Zeilennummer, Spaltenköpfe, Programmsteuerung
+* Integrierte Befehle zum Hinzufügen/bearbeiten/löschen/wiederherstellen von Zeilen, Bearbeiten der Spaltenköpfe, Programmsteuerung
 * Trennzeichenerkennung: Ermittelt übliche CSV-Trennzeichen und legt sie beim Öffnen der Datei für die Eingabe neuer Daten fest.
 * Zeilenbegrenzung: Zeigt nur die gewünschten Datensätze auf dem Bildschirm an.
 * Positionsberechnung: Wenn der angegebene Zeilenindex eines neuen Datensatzes höher als die nächste freie Zeile ist, kann automatisch die nächsthöhere freie Zeile angelegt oder ein Satz Leerzeilen bis zum angegebenen Index eingefügt werden.
@@ -34,10 +34,13 @@ Nach dem Öffnen einer CSV-Datei wird die Tabelle als formatierte Ausgabe auf de
 
 Sivvy unterstützt einige einfache Befehle zur Steuerung des Programms. Eine Liste aller Befehle kann jederzeit mit "h" über die Befehlszeile abgerufen werden.
 
-* "s" zum Umschalten der Statusmeldungsanzeige (alle oder nur die neusten 5 meldungen)
-* "c" zum Bereinigen der Statusmeldungen
-* "h" zum Anzeigen der Befehlsliste
-* "q" zum Beenden des Programms
+* "`d <Zeilennummer>`" zum Löschen einer Zeile
+* "`u`" zum Wiederherstellen gelöschter Zeilen
+* "`v <Zeilennummer>`" für die Detailansicht einer Zeile
+* "`s`" zum Umschalten der Statusmeldungsanzeige (alle oder nur die neusten 5 meldungen)
+* "`c`" zum Bereinigen der Statusmeldungen
+* "`h`" zum Anzeigen der Befehlsliste
+* "`q`" zum Beenden des Programms
 
 ## Entwicklung
 

@@ -15,7 +15,7 @@
 <h2 id="features">Features</h2>
 <ul>
 <li>Numerous output formats: Simple, Grid, Markdown, HTML, and many more.</li>
-<li>Commands: Line number, column headers, program control</li>
+<li>Built-in commands: add/edit/delete/undo rows, column headers, program control</li>
 <li>Delimiter detection: Detects common CSV delimiters and sets them when opening the file for entering new data.</li>
 <li>Display range: Only displays the desired start/end rows on the screen.</li>
 <li>Position calculation: If the specified row index is higher than the next available row, the row can be created automatically, or a set of empty rows can be inserted up to the specified index.</li>
@@ -32,10 +32,13 @@
 <p>After opening a CSV file, the table appears on the screen as formatted output. If the file doesn't exist, the program first will ask for column names, then the new file will be created. In addition to the table's actual columns, the row index - the number of the table row - is specified in the first column. The editor assumes that the first table row contains the column headers. Therefore row index 1 is the first data row, not the header row. To edit or create a new row, enter the corresponding row index in the command line below the table and press Enter. This opens the editing screen where you can enter a new data record or edit existing ones. To change the header, enter 0 as the row index. Above the table is the status display, which shows all success and error messages.</p>
 <p>Sivvy also supports a few simple commands for controlling the program. You can call up a list of all commands at any time by typing "h" in the command line.</p>
 <ul>
-<li>"s" to toggle status message display (all or 5 most recent messages)</li>
-<li>"c" to clear status messages</li>
-<li>"h" to print a list of available commands</li>
-<li>"q" to exit the program</li>
+<li>"<code>d &lt;row_number&gt;</code>" to delete a row</li>
+<li>"<code>u</code>" to undo/restore deleted rows</li>
+<li>"<code>v &lt;row_number&gt;</code>" to display a row in a more detailed view</li>
+<li>"<code>s</code>" to toggle status message display (all or 5 most recent messages)</li>
+<li>"<code>c</code>" to clear status messages</li>
+<li>"<code>h</code>" to print a list of available commands</li>
+<li>"<code>q</code>" to exit the program</li>
 </ul>
 <h2 id="development">Development</h2>
 <p>Copyright (C) Steffen Schultz, released under the terms of the MIT license.</p>
