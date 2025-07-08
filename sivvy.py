@@ -531,7 +531,7 @@ class Sivvy:
         if not self.deleted_rows:
             self.show_message(self._("No deleted rows to restore."), 'info')
             return
-        
+
         print(f"\n--- {self._('Undo History')} ---")
         for i, deleted_item in enumerate(reversed(self.deleted_rows)):
             print(f"{i + 1}. {self._('Row')} {deleted_item['index'] + 1} [{deleted_item['timestamp']}]")
@@ -569,7 +569,7 @@ class Sivvy:
                 return
 
             deleted_item = self.deleted_rows[-(undo_index + 1)]
-            
+
             print(f"\n{self._('Restoring row:')} {deleted_item['index'] + 1}")
             for header, value in zip(self.headers, deleted_item['data']):
                 print(f"{header}: {value}")
