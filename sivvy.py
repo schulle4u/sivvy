@@ -16,7 +16,7 @@ from tabulate import tabulate
 
 
 if sys.version_info < (3, 10):
-    print("Error: This script requires Python version 3.1 or higher.")
+    print("Error: This script requires Python version 3.10 or higher.")
     print(f"Your version: Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
     sys.exit(1)
 
