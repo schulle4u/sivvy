@@ -54,6 +54,8 @@ class Sivvy:
         self.headers = []
         self.delimiter = ','
         self.display_range = display_range
+        self.deleted_rows = []  # Saves deleted rows for undo
+        self.max_undo_history = 10
 
         # Setup our methods
         self.setup_signal_handlers()
@@ -434,6 +436,160 @@ class Sivvy:
 
         self.show_message(self._("Row %(index)s has been updated.") % {'index': row_index + 1}, 'info')
 
+    def _delete_row(self, row_index):
+        """Deletes a row with confirmation"""
+        if row_index < 0 or row_index >= len(self.data):
+            self.show_message(
+                self._("Invalid row index %(index)s. Valid range: 1-%(max)s") % {
+                    'index': row_index + 1, 
+                    'max': len(self.data)
+                }, 
+                'warning'
+            )
+            return False
+
+        row_to_delete = self.data[row_index]
+        print(f"\n--- {self._('Row to delete:')} {row_index + 1} ---")
+
+        for i, (header, value) in enumerate(zip(self.headers, row_to_delete)):
+            print(f"{header}: {value}")
+
+        confirm = input(self._("Delete this row?") + " (y/n): ").strip().lower()
+
+        if confirm == 'y':
+            deleted_row = self.data.pop(row_index)
+            self.show_message(
+                self._("Row %(index)s deleted successfully.") % {'index': row_index + 1}, 
+                'info'
+            )
+
+            self.deleted_rows.append({
+                'index': row_index,
+                'data': deleted_row,
+                'timestamp': self._get_current_time()
+            })
+
+            if len(self.deleted_rows) > self.max_undo_history:
+                self.deleted_rows.pop(0)
+
+            return True
+        else:
+            self.show_message(self._("Aborted."), 'info')
+            return False
+
+    def _parse_delete_command(self, user_input):
+        """Parse delete command."""
+        parts = user_input.split()
+
+        if len(parts) != 2:
+            self.show_message(
+                self._("Invalid delete command. Usage: d <row_number>"), 
+                'warning'
+            )
+            return None
+
+        try:
+            row_number = int(parts[1])
+            if row_number <= 0:
+                self.show_message(
+                    self._("Row number must be positive."), 
+                    'warning'
+                )
+                return None
+
+            return row_number - 1
+
+        except ValueError:
+            self.show_message(
+                self._("Invalid row number: %(number)s") % {'number': parts[1]}, 
+                'warning'
+            )
+            return None
+
+    def _show_undo_history(self):
+        """Show undo history."""
+        if not self.deleted_rows:
+            self.show_message(self._("No deleted rows to restore."), 'info')
+            return
+        
+        print(f"\n--- {self._('Undo History')} ---")
+        for i, deleted_item in enumerate(reversed(self.deleted_rows)):
+            print(f"{i + 1}. {self._('Row')} {deleted_item['index'] + 1} [{deleted_item['timestamp']}]")
+
+            preview_data = deleted_item['data'][:3]
+            preview_headers = self.headers[:3]
+            preview_str = " | ".join([f"{h}: {v}" for h, v in zip(preview_headers, preview_data)])
+            print(f"   {preview_str}{'...' if len(deleted_item['data']) > 3 else ''}")
+            print()
+
+    def _undo_delete(self):
+        """Restores a deleted line."""
+        if not self.deleted_rows:
+            self.show_message(self._("No deleted rows to restore."), 'info')
+            return
+
+        self._show_undo_history()
+
+        try:
+            choice = input(self._("Enter number to restore (or press Enter to cancel): ")).strip()
+
+            if not choice:
+                self.show_message(self._("Aborted."), 'info')
+                return
+
+            undo_index = int(choice) - 1
+
+            if undo_index < 0 or undo_index >= len(self.deleted_rows):
+                self.show_message(
+                    self._("Invalid choice. Please enter a number between 1 and %(max)s") % {
+                        'max': len(self.deleted_rows)
+                    }, 
+                    'warning'
+                )
+                return
+
+            deleted_item = self.deleted_rows[-(undo_index + 1)]
+            
+            print(f"\n{self._('Restoring row:')} {deleted_item['index'] + 1}")
+            for header, value in zip(self.headers, deleted_item['data']):
+                print(f"{header}: {value}")
+
+            restore_position = input(
+                self._("Restore at position (1-%(max)s, or Enter for original position %(orig)s): ") % {
+                    'max': len(self.data) + 1,
+                    'orig': deleted_item['index'] + 1
+                }
+            ).strip()
+
+            if restore_position:
+                try:
+                    position = int(restore_position) - 1
+                    if position < 0 or position > len(self.data):
+                        self.show_message(self._("Invalid position. Using original position."), 'warning')
+                        position = min(deleted_item['index'], len(self.data))
+                except ValueError:
+                    self.show_message(self._("Invalid position. Using original position."), 'warning')
+                    position = min(deleted_item['index'], len(self.data))
+            else:
+                position = min(deleted_item['index'], len(self.data))
+
+            self.data.insert(position, deleted_item['data'])
+
+            self.deleted_rows.pop(-(undo_index + 1))
+
+            self.show_message(
+                self._("Row restored at position %(pos)s") % {'pos': position + 1}, 
+                'info'
+            )
+
+        except ValueError:
+            self.show_message(self._("Invalid input. Please enter a number."), 'warning')
+        except Exception as e:
+            self.show_message(
+                self._("Error during undo: %(error)s") % {'error': e}, 
+                'error'
+            )
+
     def run(self):
         """Main editor loop"""
         while True:
@@ -467,6 +623,8 @@ class Sivvy:
                 case 'h':
                     print(self._("Commands:"))
                     print(self._("- Enter row number to edit (0 for headers)"))
+                    print(self._("- 'd <row_number>' to delete a row"))
+                    print(self._("- 'u' to undo/restore deleted rows"))
                     print(self._("- 's' to toggle status message display"))
                     print(self._("- 'c' to clear status messages"))
                     print(self._("- 'q' to exit"))
@@ -475,7 +633,16 @@ class Sivvy:
                 case '0':
                     self._edit_headers()
                     continue
+                case 'u':
+                    self._undo_delete()
+                    continue
                 case _:
+                    if user_input.startswith('d '):
+                        row_index = self._parse_delete_command(user_input)
+                        if row_index is not None:
+                            self._delete_row(row_index)
+                        continue
+
                     try:
                         row_index = int(user_input) - 1
 

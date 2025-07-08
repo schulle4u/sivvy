@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sivvy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 10:38+0200\n"
+"POT-Creation-Date: 2025-07-08 12:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,249 +20,337 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: sivvy.py\n"
 
-#: sivvy.py:120 sivvy.py:469
+#: sivvy.py:128 sivvy.py:631
 msgid "Press Enter to continue..."
 msgstr ""
 
-#: sivvy.py:132
+#: sivvy.py:140
 msgid "Status Messages:"
 msgstr ""
 
-#: sivvy.py:138
+#: sivvy.py:146
 msgid "(Showing last 5 messages - enter 's' to see all)"
 msgstr ""
 
-#: sivvy.py:152
+#: sivvy.py:160
 msgid "all"
 msgstr ""
 
-#: sivvy.py:152
+#: sivvy.py:160
 msgid "recent"
 msgstr ""
 
-#: sivvy.py:154
+#: sivvy.py:162
 #, python-format
 msgid "Message display mode: %(mode)s"
 msgstr ""
 
-#: sivvy.py:170
+#: sivvy.py:178
 msgid "Please enter column names separated by commas."
 msgstr ""
 
-#: sivvy.py:171
+#: sivvy.py:179
 msgid "Column names: "
 msgstr ""
 
-#: sivvy.py:174
+#: sivvy.py:182
 msgid "No column names entered. Using default headers."
 msgstr ""
 
-#: sivvy.py:183
+#: sivvy.py:191
 #, python-format
 msgid ""
 "Warning: Invalid output format '%(format)s' entered. Falling back to default "
 "format 'simple'."
 msgstr ""
 
-#: sivvy.py:194
+#: sivvy.py:202
 #, python-format
 msgid "File '%(file)s' is empty. Please enter column names:"
 msgstr ""
 
-#: sivvy.py:201
+#: sivvy.py:209
 #, python-format
 msgid "Created empty new file '%(file)s' with headers."
 msgstr ""
 
-#: sivvy.py:215
+#: sivvy.py:223
 #, python-format
 msgid "Loaded file '%(file)s' with %(rows)s rows."
 msgstr ""
 
-#: sivvy.py:224
+#: sivvy.py:232
 msgid "File exists but appears to be empty after reading."
 msgstr ""
 
-#: sivvy.py:232
+#: sivvy.py:240
 #, python-format
 msgid "File '%(file)s' not found. Creating a new file."
 msgstr ""
 
-#: sivvy.py:241
+#: sivvy.py:249
 #, python-format
 msgid "Permission denied: Cannot read file '%(file)s'."
 msgstr ""
 
-#: sivvy.py:248
+#: sivvy.py:256
 #, python-format
 msgid "File encoding error: %(error)s. Trying different encoding..."
 msgstr ""
 
-#: sivvy.py:262
+#: sivvy.py:270
 #, python-format
 msgid "Detected delimiter: '%(delimiter)s'"
 msgstr ""
 
-#: sivvy.py:270
+#: sivvy.py:278
 #, python-format
 msgid "Could not detect delimiter automatically: %(error)s. Using comma (,)."
 msgstr ""
 
-#: sivvy.py:276
+#: sivvy.py:284
 #, python-format
 msgid ""
 "Unexpected error during delimiter detection: %(error)s. Using comma (,)."
 msgstr ""
 
-#: sivvy.py:288
+#: sivvy.py:296
 #, python-format
 msgid "Trying encoding: %(encoding)s"
 msgstr ""
 
-#: sivvy.py:307
+#: sivvy.py:315
 #, python-format
 msgid "Successfully loaded with encoding %(encoding)s."
 msgstr ""
 
-#: sivvy.py:316
+#: sivvy.py:324
 #, python-format
 msgid "Error with encoding %(encoding)s: %(error)s"
 msgstr ""
 
-#: sivvy.py:322
+#: sivvy.py:330
 msgid "Could not read file with any supported encoding. File may be corrupted."
 msgstr ""
 
-#: sivvy.py:340
+#: sivvy.py:348
 #, python-format
 msgid "Saved changes in '%(file)s'."
 msgstr ""
 
-#: sivvy.py:342
+#: sivvy.py:350
 #, python-format
 msgid "Error saving '%(file)s': %(error)s"
 msgstr ""
 
-#: sivvy.py:344
+#: sivvy.py:352
 #, python-format
 msgid "An unexpected error occurred while saving: %(error)s"
 msgstr ""
 
-#: sivvy.py:357
+#: sivvy.py:365
 #, python-format
 msgid "Displaying rows %(start)s to %(end)s"
 msgstr ""
 
-#: sivvy.py:359
+#: sivvy.py:367
 msgid "Invalid or empty display range. Loading the entire file."
 msgstr ""
 
-#: sivvy.py:371
+#: sivvy.py:379
 msgid "Index"
 msgstr ""
 
-#: sivvy.py:376
+#: sivvy.py:384
 msgid "Editing column headers"
 msgstr ""
 
-#: sivvy.py:377 sivvy.py:416
+#: sivvy.py:385 sivvy.py:424
 msgid "Enter new values. Leave empty to retain the current value."
 msgstr ""
 
-#: sivvy.py:381
+#: sivvy.py:389
 #, python-format
 msgid "Column %(num)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:388
+#: sivvy.py:396
 msgid "Column headers have been updated."
 msgstr ""
 
-#: sivvy.py:397
+#: sivvy.py:405
 #, python-format
 msgid ""
 "Row index %(index)s is higher than the maximum number of rows (%(maxrows)s)."
 msgstr ""
 
-#: sivvy.py:398
+#: sivvy.py:406
 #, python-format
 msgid "Should the gap be filled with %(rows)s empty rows?"
 msgstr ""
 
-#: sivvy.py:403
+#: sivvy.py:411
 #, python-format
 msgid "Added %(rows)s empty rows."
 msgstr ""
 
-#: sivvy.py:411
+#: sivvy.py:419
 #, python-format
 msgid "Adding new row %(index)s."
 msgstr ""
 
-#: sivvy.py:415
+#: sivvy.py:423
 #, python-format
 msgid "Editing row %(index)s"
 msgstr ""
 
-#: sivvy.py:421
+#: sivvy.py:429
 #, python-format
 msgid "%(header)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:429
+#: sivvy.py:437
 #, python-format
 msgid "Row %(index)s has been updated."
 msgstr ""
 
-#: sivvy.py:436
-msgid "Welcome to Sivvy!"
+#: sivvy.py:443
+#, python-format
+msgid "Invalid row index %(index)s. Valid range: 1-%(max)s"
 msgstr ""
 
-#: sivvy.py:444
-msgid "Command ('h' for help): "
+#: sivvy.py:452
+msgid "Row to delete:"
 msgstr ""
 
-#: sivvy.py:447
-msgid "Exit and save changes"
+#: sivvy.py:457
+msgid "Delete this row?"
 msgstr ""
 
-#: sivvy.py:451
+#: sivvy.py:462
+#, python-format
+msgid "Row %(index)s deleted successfully."
+msgstr ""
+
+#: sivvy.py:477 sivvy.py:537 sivvy.py:614
 msgid "Aborted."
 msgstr ""
 
-#: sivvy.py:460
-msgid "Status messages cleared."
-msgstr ""
-
-#: sivvy.py:464
-msgid "Commands:"
-msgstr ""
-
-#: sivvy.py:465
-msgid "- Enter row number to edit (0 for headers)"
-msgstr ""
-
-#: sivvy.py:466
-msgid "- 's' to toggle status message display"
-msgstr ""
-
-#: sivvy.py:467
-msgid "- 'c' to clear status messages"
-msgstr ""
-
-#: sivvy.py:468
-msgid "- 'q' to exit"
-msgstr ""
-
-#: sivvy.py:481
-msgid "Invalid row index. Please enter a positive value or 0 for headers."
-msgstr ""
-
-#: sivvy.py:490
-msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
+#: sivvy.py:486
+msgid "Invalid delete command. Usage: d <row_number>"
 msgstr ""
 
 #: sivvy.py:495
+msgid "Row number must be positive."
+msgstr ""
+
+#: sivvy.py:504
+#, python-format
+msgid "Invalid row number: %(number)s"
+msgstr ""
+
+#: sivvy.py:512 sivvy.py:528
+msgid "No deleted rows to restore."
+msgstr ""
+
+#: sivvy.py:515
+msgid "Undo History"
+msgstr ""
+
+#: sivvy.py:517
+msgid "Row"
+msgstr ""
+
+#: sivvy.py:534
+msgid "Enter number to restore (or press Enter to cancel): "
+msgstr ""
+
+#: sivvy.py:544
+#, python-format
+msgid "Invalid choice. Please enter a number between 1 and %(max)s"
+msgstr ""
+
+#: sivvy.py:553
+msgid "Restoring row:"
+msgstr ""
+
+#: sivvy.py:558
+#, python-format
+msgid ""
+"Restore at position (1-%(max)s, or Enter for original position %(orig)s): "
+msgstr ""
+
+#: sivvy.py:568 sivvy.py:571
+msgid "Invalid position. Using original position."
+msgstr ""
+
+#: sivvy.py:581
+#, python-format
+msgid "Row restored at position %(pos)s"
+msgstr ""
+
+#: sivvy.py:586
+msgid "Invalid input. Please enter a number."
+msgstr ""
+
+#: sivvy.py:589
+#, python-format
+msgid "Error during undo: %(error)s"
+msgstr ""
+
+#: sivvy.py:598
+msgid "Welcome to Sivvy!"
+msgstr ""
+
+#: sivvy.py:606
+msgid "Command ('h' for help): "
+msgstr ""
+
+#: sivvy.py:610
+msgid "Exit and save changes"
+msgstr ""
+
+#: sivvy.py:621
+msgid "Status messages cleared."
+msgstr ""
+
+#: sivvy.py:624
+msgid "Commands:"
+msgstr ""
+
+#: sivvy.py:625
+msgid "- Enter row number to edit (0 for headers)"
+msgstr ""
+
+#: sivvy.py:626
+msgid "- 'd <row_number>' to delete a row"
+msgstr ""
+
+#: sivvy.py:627
+msgid "- 'u' to undo/restore deleted rows"
+msgstr ""
+
+#: sivvy.py:628
+msgid "- 's' to toggle status message display"
+msgstr ""
+
+#: sivvy.py:629
+msgid "- 'c' to clear status messages"
+msgstr ""
+
+#: sivvy.py:630
+msgid "- 'q' to exit"
+msgstr ""
+
+#: sivvy.py:651
+msgid "Invalid row index. Please enter a positive value or 0 for headers."
+msgstr ""
+
+#: sivvy.py:660
+msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
+msgstr ""
+
+#: sivvy.py:665
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr ""
