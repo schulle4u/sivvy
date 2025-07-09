@@ -663,7 +663,7 @@ class Sivvy:
                         if row_index is not None:
                             self._delete_row(row_index)
                         continue
-                    if user_input.startswith('v '):
+                    elif user_input.startswith('v '):
                         row_index = self._parse_split_command(user_input)
                         if row_index is not None:
                             self._display_row(row_index)
