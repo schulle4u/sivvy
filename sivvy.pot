@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sivvy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 13:21+0200\n"
+"POT-Creation-Date: 2025-07-09 14:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: sivvy.py\n"
 
-#: sivvy.py:128 sivvy.py:498 sivvy.py:652
+#: sivvy.py:128 sivvy.py:498 sivvy.py:653
 msgid "Press Enter to continue..."
 msgstr ""
 
@@ -220,7 +220,8 @@ msgid "Invalid row index %(index)s. Valid range: 1-%(max)s"
 msgstr ""
 
 #: sivvy.py:452
-msgid "Row to delete:"
+#, python-format
+msgid "Deleting row %(index)s"
 msgstr ""
 
 #: sivvy.py:457
@@ -237,7 +238,8 @@ msgid "Aborted."
 msgstr ""
 
 #: sivvy.py:493
-msgid "Displaying row:"
+#, python-format
+msgid "Displaying row %(index)s"
 msgstr ""
 
 #: sivvy.py:506
@@ -319,46 +321,50 @@ msgid "Status messages cleared."
 msgstr ""
 
 #: sivvy.py:644
-msgid "Commands:"
+msgid "Help"
 msgstr ""
 
 #: sivvy.py:645
-msgid "- Enter row number to edit (0 for headers)"
+msgid "The following commands are available:"
 msgstr ""
 
 #: sivvy.py:646
-msgid "- 'd <row_number>' to delete a row"
+msgid "- Enter row number to edit (0 for headers)"
 msgstr ""
 
 #: sivvy.py:647
-msgid "- 'u' to undo/restore deleted rows"
+msgid "- 'd <row_number>' to delete a row"
 msgstr ""
 
 #: sivvy.py:648
-msgid "- 'v <row_number>' to display a row in a more detailed view"
+msgid "- 'u' to undo/restore deleted rows"
 msgstr ""
 
 #: sivvy.py:649
-msgid "- 's' to toggle status message display"
+msgid "- 'v <row_number>' to display a row in a more detailed view"
 msgstr ""
 
 #: sivvy.py:650
-msgid "- 'c' to clear status messages"
+msgid "- 's' to toggle status message display"
 msgstr ""
 
 #: sivvy.py:651
+msgid "- 'c' to clear status messages"
+msgstr ""
+
+#: sivvy.py:652
 msgid "- 'q' to exit"
 msgstr ""
 
-#: sivvy.py:677
+#: sivvy.py:678
 msgid "Invalid row index. Please enter a positive value or 0 for headers."
 msgstr ""
 
-#: sivvy.py:686
+#: sivvy.py:687
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 
-#: sivvy.py:691
+#: sivvy.py:692
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr ""

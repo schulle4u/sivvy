@@ -449,7 +449,7 @@ class Sivvy:
             return False
 
         row_to_delete = self.data[row_index]
-        print(f"\n--- {self._('Row to delete:')} {row_index + 1} ---")
+        print(f"\n--- " + self._("Deleting row %(index)s") % {'index': row_index + 1} + " ---")
 
         for i, (header, value) in enumerate(zip(self.headers, row_to_delete)):
             print(f"{header}: {value}")
@@ -490,7 +490,7 @@ class Sivvy:
             return False
 
         row_to_display = self.data[row_index]
-        print(f"\n--- {self._('Displaying row:')} {row_index + 1} ---")
+        print(f"\n--- " + self._("Displaying row %(index)s") % {'index': row_index + 1} + " ---")
 
         for i, (header, value) in enumerate(zip(self.headers, row_to_display)):
             print(f"{header}: {value}")
@@ -641,7 +641,8 @@ class Sivvy:
                     self.show_message(self._("Status messages cleared."), 'info')
                     continue
                 case 'h':
-                    print(self._("Commands:"))
+                    print(f"\n--- {self._('Help')} ---")
+                    print(self._("The following commands are available:"))
                     print(self._("- Enter row number to edit (0 for headers)"))
                     print(self._("- 'd <row_number>' to delete a row"))
                     print(self._("- 'u' to undo/restore deleted rows"))

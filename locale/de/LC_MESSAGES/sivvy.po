@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 13:21+0200\n"
-"PO-Revision-Date: 2025-07-08 13:24+0200\n"
+"POT-Creation-Date: 2025-07-09 14:37+0200\n"
+"PO-Revision-Date: 2025-07-09 14:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: sivvy.py:128 sivvy.py:498 sivvy.py:652
+#: sivvy.py:128 sivvy.py:498 sivvy.py:653
 msgid "Press Enter to continue..."
 msgstr "Fortfahren mit Enter..."
 
@@ -229,8 +229,9 @@ msgid "Invalid row index %(index)s. Valid range: 1-%(max)s"
 msgstr "Ungültiger Zeilenindex %(index)s. Gültiger Bereich: 1-%(max)s"
 
 #: sivvy.py:452
-msgid "Row to delete:"
-msgstr "Zu löschende Zeile:"
+#, python-format
+msgid "Deleting row %(index)s"
+msgstr "Lösche Zeile %(index)s"
 
 #: sivvy.py:457
 msgid "Delete this row?"
@@ -246,8 +247,9 @@ msgid "Aborted."
 msgstr "Abbruch."
 
 #: sivvy.py:493
-msgid "Displaying row:"
-msgstr "Detailansicht für Zeile:"
+#, python-format
+msgid "Displaying row %(index)s"
+msgstr "Betrachte Zeile %(index)s"
 
 #: sivvy.py:506
 msgid "Invalid split command. Usage: <command> <row_number>"
@@ -330,50 +332,63 @@ msgid "Status messages cleared."
 msgstr "Statusmeldungen gelöscht."
 
 #: sivvy.py:644
-msgid "Commands:"
-msgstr "Befehle:"
+msgid "Help"
+msgstr "Hilfe"
 
 #: sivvy.py:645
+msgid "The following commands are available:"
+msgstr "Folgende Befehle sind verfügbar:"
+
+#: sivvy.py:646
 msgid "- Enter row number to edit (0 for headers)"
 msgstr "- Zeilenindex zum Bearbeiten eingeben (0 für Spaltenköpfe)"
 
-#: sivvy.py:646
+#: sivvy.py:647
 msgid "- 'd <row_number>' to delete a row"
 msgstr "- 'd <Zeilennummer>' zum Löschen einer Zeile"
 
-#: sivvy.py:647
+#: sivvy.py:648
 msgid "- 'u' to undo/restore deleted rows"
 msgstr "- 'u' zum Wiederherstellen gelöschter Zeilen"
 
-#: sivvy.py:648
+#: sivvy.py:649
 msgid "- 'v <row_number>' to display a row in a more detailed view"
 msgstr "- 'v <Zeilennummer>' für die Detailansicht einer Zeile"
 
-#: sivvy.py:649
+#: sivvy.py:650
 msgid "- 's' to toggle status message display"
 msgstr "- 's' zum Umschalten der Statusmeldungsanzeige"
 
-#: sivvy.py:650
+#: sivvy.py:651
 msgid "- 'c' to clear status messages"
 msgstr "- 'c' zum Bereinigen der Statusmeldungen"
 
-#: sivvy.py:651
+#: sivvy.py:652
 msgid "- 'q' to exit"
 msgstr "- 'q' zum Beenden"
 
-#: sivvy.py:677
+#: sivvy.py:678
 msgid "Invalid row index. Please enter a positive value or 0 for headers."
 msgstr ""
 "Ungültiger Zeilenindex. Bitte einen positiven Wert eingeben oder 0 für die "
 "Spaltenköpfe."
 
-#: sivvy.py:686
+#: sivvy.py:687
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 "Ungültige Eingabe. Bitte eine Zahl eingeben, '0' für die Spaltenköpfe, oder "
 "'q' zum Beenden."
 
-#: sivvy.py:691
+#: sivvy.py:692
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr "Ein unerwarteter Fehler ist aufgetreten: %(error)s"
+
+#~ msgid "Row to delete:"
+#~ msgstr "Zu löschende Zeile:"
+
+#~ msgid "Displaying row:"
+#~ msgstr "Detailansicht für Zeile:"
+
+#~ msgid "Commands:"
+#~ msgstr "Befehle:"
