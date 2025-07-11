@@ -310,9 +310,11 @@ class Sivvy:
 
             sniffer = csv.Sniffer()
             dialect = sniffer.sniff(sample)
+            
+            delimiter_display = self.readable_delimiter(dialect.delimiter)
 
             self.show_message(
-                self._("Detected delimiter: '%(delimiter)s'") % {'delimiter': dialect.delimiter},
+                self._("Detected delimiter: %(delimiter)s") % {'delimiter': delimiter_display},
                 'info'
             )
 
@@ -330,6 +332,63 @@ class Sivvy:
                 'warning'
             )
             return ','
+
+    def readable_delimiter(self, delimiter):
+        """
+        Makes non-printable delimiter characters readable.
+
+        Args:
+            delimiter (str): the delimiter
+
+        Returns:
+            str: A readable delimiter display
+        """
+        # Dictionary with most used non-printable characters
+        non_printable_chars = {
+            '\t': 'TAB',
+            '\n': 'NEWLINE',
+            '\r': 'CARRIAGE_RETURN',
+            '\v': 'VERTICAL_TAB',
+            '\f': 'FORM_FEED',
+            ' ': 'SPACE',
+            '\x00': 'NULL',
+            '\x01': 'SOH',
+            '\x02': 'STX',
+            '\x03': 'ETX',
+            '\x04': 'EOT',
+            '\x05': 'ENQ',
+            '\x06': 'ACK',
+            '\x07': 'BELL',
+            '\x08': 'BACKSPACE',
+            '\x0e': 'SHIFT_OUT',
+            '\x0f': 'SHIFT_IN',
+            '\x10': 'DATA_LINK_ESCAPE',
+            '\x11': 'DEVICE_CONTROL_1',
+            '\x12': 'DEVICE_CONTROL_2',
+            '\x13': 'DEVICE_CONTROL_3',
+            '\x14': 'DEVICE_CONTROL_4',
+            '\x15': 'NEGATIVE_ACK',
+            '\x16': 'SYNCHRONOUS_IDLE',
+            '\x17': 'END_TRANSMISSION_BLOCK',
+            '\x18': 'CANCEL',
+            '\x19': 'END_OF_MEDIUM',
+            '\x1a': 'SUBSTITUTE',
+            '\x1b': 'ESCAPE',
+            '\x1c': 'FILE_SEPARATOR',
+            '\x1d': 'GROUP_SEPARATOR',
+            '\x1e': 'RECORD_SEPARATOR',
+            '\x1f': 'UNIT_SEPARATOR'
+        }
+
+        if delimiter in non_printable_chars:
+            return f"'{delimiter}' ({non_printable_chars[delimiter]})"
+        
+        elif delimiter.isprintable():
+            return f"'{delimiter}'"
+
+        else:
+            hex_repr = ''.join(f'\\x{ord(c):02x}' for c in delimiter)
+            return f"'{delimiter}' (HEX: {hex_repr})"
 
     def _try_alternative_encodings(self):
         """Fallback method to try different encodings if UTF-8 fails."""
