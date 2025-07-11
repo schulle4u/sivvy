@@ -33,7 +33,7 @@ class Sivvy:
         "textile", "tsv"
     ]
 
-    def __init__(self, filename, display_range=None, table_format="simple"):
+    def __init__(self, filename, display_range=None, table_format="simple", output_filename=None):
         # Determine current script directory
         if getattr(sys, 'frozen', False):
             self.scriptdir = Path(sys.executable).parent
@@ -50,6 +50,7 @@ class Sivvy:
 
         # Parameters
         self.filename = filename
+        self.output_filename = output_filename
         self.data = []
         self.headers = []
         self.delimiter = ','
@@ -246,7 +247,7 @@ class Sivvy:
 
         except PermissionError:
             self.show_message(
-                self._("Permission denied: Cannot read file '%(file)s'.") % {'file': self.filename},
+                self._("Permission denied: Cannot access file '%(file)s'.") % {'file': self.filename},
                 'error'
             )
             raise
@@ -351,7 +352,7 @@ class Sivvy:
         except Exception as e:
             print(self._("An unexpected error occurred while saving: %(error)s") % {'error': e})
 
-    def display_table(self):
+    def display_table(self, output_filename=None):
         """Displays data in the terminal as a formatted table, optionally with row limit."""
         data_to_display = self.data
         start_row, end_row = None, None
@@ -377,7 +378,29 @@ class Sivvy:
             indexed_data.append([original_index] + padded_row[:len(self.headers)]) 
 
         indexed_headers = [self._("Index")] + self.headers
-        print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True))
+        if (output_filename):
+            try:
+                with open(output_filename, 'w', encoding='utf-8') as f:
+                    print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True), file=f)
+                    self.show_message(
+                        self._("The current table's output was exported to file '%(file)s'.") % {'file': output_filename},
+                        'info'
+                    )
+
+            except FileNotFoundError:
+                self.show_message(
+                    self._("File '%(file)s' not found. Creating a new file.") % {'file': output_filename},
+                    'warning',
+                )
+
+            except PermissionError:
+                self.show_message(
+                    self._("Permission denied: Cannot access file '%(file)s'.") % {'file': output_filename},
+                    'error',
+                    store=False
+                )
+        else:
+            print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True))
 
     def _edit_headers(self):
         """Edits the column headers."""
@@ -449,7 +472,7 @@ class Sivvy:
             return False
 
         row_to_delete = self.data[row_index]
-        print(f"\n--- " + self._("Deleting row %(index)s") % {'index': row_index + 1} + " ---")
+        print("\n--- " + self._("Deleting row %(index)s") % {'index': row_index + 1} + " ---")
 
         for i, (header, value) in enumerate(zip(self.headers, row_to_delete)):
             print(f"{header}: {value}")
@@ -490,7 +513,7 @@ class Sivvy:
             return False
 
         row_to_display = self.data[row_index]
-        print(f"\n--- " + self._("Displaying row %(index)s") % {'index': row_index + 1} + " ---")
+        print("\n--- " + self._("Displaying row %(index)s") % {'index': row_index + 1} + " ---")
 
         for i, (header, value) in enumerate(zip(self.headers, row_to_display)):
             print(f"{header}: {value}")
@@ -647,6 +670,7 @@ class Sivvy:
                     print(self._("- 'd <row_number>' to delete a row"))
                     print(self._("- 'u' to undo/restore deleted rows"))
                     print(self._("- 'v <row_number>' to display a row in a more detailed view"))
+                    print(self._("- 'e' to export current table view as a file"))
                     print(self._("- 's' to toggle status message display"))
                     print(self._("- 'c' to clear status messages"))
                     print(self._("- 'q' to exit"))
@@ -657,6 +681,17 @@ class Sivvy:
                     continue
                 case 'u':
                     self._undo_delete()
+                    continue
+                case 'e':
+                    print(f"\n--- {self._('Table export')} ---")
+                    print(self._("This function exports the current table view as a text file in the program's directory. \n"
+                                 "Enter the desired file name, press Enter for the default file name 'sivvy_output.txt' or 'c' to cancel."))
+                    filename_value = input(self._("Export filename (default: 'sivvy_output.txt'): ")).strip() or 'sivvy_output.txt'
+                    if filename_value == 'c':
+                        self.show_message(self._("Aborted."), 'info')
+                        continue
+                    else:
+                        self.display_table(self.scriptdir / filename_value)
                     continue
                 case _:
                     if user_input.startswith('d '):

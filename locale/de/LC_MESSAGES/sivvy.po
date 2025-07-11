@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 14:37+0200\n"
-"PO-Revision-Date: 2025-07-09 14:38+0200\n"
+"POT-Creation-Date: 2025-07-11 14:53+0200\n"
+"PO-Revision-Date: 2025-07-11 14:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -19,45 +19,45 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: sivvy.py:128 sivvy.py:498 sivvy.py:653
+#: sivvy.py:129 sivvy.py:521 sivvy.py:677
 msgid "Press Enter to continue..."
 msgstr "Fortfahren mit Enter..."
 
-#: sivvy.py:140
+#: sivvy.py:141
 msgid "Status Messages:"
 msgstr "Statusmeldungen:"
 
-#: sivvy.py:146
+#: sivvy.py:147
 msgid "(Showing last 5 messages - enter 's' to see all)"
 msgstr ""
 "(Die letzten 5 Meldungen werden angezeigt - 's' eingeben um alle anzuzeigen)"
 
-#: sivvy.py:160
+#: sivvy.py:161
 msgid "all"
 msgstr "alle"
 
-#: sivvy.py:160
+#: sivvy.py:161
 msgid "recent"
 msgstr "neueste"
 
-#: sivvy.py:162
+#: sivvy.py:163
 #, python-format
 msgid "Message display mode: %(mode)s"
 msgstr "Anzeigemodus: %(mode)s"
 
-#: sivvy.py:178
+#: sivvy.py:179
 msgid "Please enter column names separated by commas."
 msgstr "Bitte Spaltennamen durch Kommas getrennt eingeben."
 
-#: sivvy.py:179
+#: sivvy.py:180
 msgid "Column names: "
 msgstr "Spaltennamen: "
 
-#: sivvy.py:182
+#: sivvy.py:183
 msgid "No column names entered. Using default headers."
 msgstr "Keine Spaltennamen eingegeben. Standardspalten werden verwendet."
 
-#: sivvy.py:191
+#: sivvy.py:192
 #, python-format
 msgid ""
 "Warning: Invalid output format '%(format)s' entered. Falling back to default "
@@ -66,53 +66,54 @@ msgstr ""
 "Warnung: Ungültiges Ausgabeformat '%(format)s'. Das Standardformat 'simple' "
 "wird verwendet."
 
-#: sivvy.py:202
+#: sivvy.py:203
 #, python-format
 msgid "File '%(file)s' is empty. Please enter column names:"
 msgstr "Datei '%(file)s' ist leer. Bitte Spaltennamen eingeben:"
 
-#: sivvy.py:209
+#: sivvy.py:210
 #, python-format
 msgid "Created empty new file '%(file)s' with headers."
 msgstr "Leere neue Datei '%(file)s' mit Spaltenköpfen erstellt."
 
-#: sivvy.py:223
+#: sivvy.py:224
 #, python-format
 msgid "Loaded file '%(file)s' with %(rows)s rows."
 msgstr "Datei '%(file)s' mit %(rows)s Zeilen geladen."
 
-#: sivvy.py:232
+#: sivvy.py:233
 msgid "File exists but appears to be empty after reading."
 msgstr "Datei existiert, scheint nach dem Lesen aber leer zu sein."
 
-#: sivvy.py:240
+#: sivvy.py:241 sivvy.py:392
 #, python-format
 msgid "File '%(file)s' not found. Creating a new file."
 msgstr "Datei '%(file)s' nicht gefunden. Eine neue Datei wird erstellt."
 
-#: sivvy.py:249
+#: sivvy.py:250 sivvy.py:398
 #, python-format
-msgid "Permission denied: Cannot read file '%(file)s'."
-msgstr "Zugriff verweigert: Datei '%(file)s' kann nicht gelesen werden."
+msgid "Permission denied: Cannot access file '%(file)s'."
+msgstr ""
+"Berechtigung verweigert: Auf Datei '%(file)s' kann nicht zugegriffen werden."
 
-#: sivvy.py:256
+#: sivvy.py:257
 #, python-format
 msgid "File encoding error: %(error)s. Trying different encoding..."
 msgstr "Dateikodierungsfehler: %(error)s. Versuche eine andere Kodierung..."
 
-#: sivvy.py:270
+#: sivvy.py:271
 #, python-format
 msgid "Detected delimiter: '%(delimiter)s'"
 msgstr "Trennzeichen erkannt: '%(delimiter)s'"
 
-#: sivvy.py:278
+#: sivvy.py:279
 #, python-format
 msgid "Could not detect delimiter automatically: %(error)s. Using comma (,)."
 msgstr ""
 "Trennzeichen konnte nicht automatisch erkannt werden: %(error)s. Verwende "
 "Komma (,)."
 
-#: sivvy.py:284
+#: sivvy.py:285
 #, python-format
 msgid ""
 "Unexpected error during delimiter detection: %(error)s. Using comma (,)."
@@ -120,176 +121,181 @@ msgstr ""
 "Unerwarteter Fehler bei der Trennzeichenerkennung: %(error)s. Verwende Komma "
 "(,)."
 
-#: sivvy.py:296
+#: sivvy.py:297
 #, python-format
 msgid "Trying encoding: %(encoding)s"
 msgstr "Versuche Kodierung: %(encoding)s"
 
-#: sivvy.py:315
+#: sivvy.py:316
 #, python-format
 msgid "Successfully loaded with encoding %(encoding)s."
 msgstr "Erfolgreich mit Kodierung %(encoding)s geladen."
 
-#: sivvy.py:324
+#: sivvy.py:325
 #, python-format
 msgid "Error with encoding %(encoding)s: %(error)s"
 msgstr "Fehler mit der Kodierung%(encoding)s: %(error)s"
 
-#: sivvy.py:330
+#: sivvy.py:331
 msgid "Could not read file with any supported encoding. File may be corrupted."
 msgstr ""
 "Die Datei konnte mit keiner unterstützten Kodierung geladen werden. "
 "Möglicherweise ist sie defekt."
 
-#: sivvy.py:348
+#: sivvy.py:349
 #, python-format
 msgid "Saved changes in '%(file)s'."
 msgstr "Änderungen in '%(file)s' gespeichert."
 
-#: sivvy.py:350
+#: sivvy.py:351
 #, python-format
 msgid "Error saving '%(file)s': %(error)s"
 msgstr "Fehler beim Speichern von '%(file)s': %(error)s"
 
-#: sivvy.py:352
+#: sivvy.py:353
 #, python-format
 msgid "An unexpected error occurred while saving: %(error)s"
 msgstr "Unerwarteter Fehler beim Speichern: %(error)s"
 
-#: sivvy.py:365
+#: sivvy.py:366
 #, python-format
 msgid "Displaying rows %(start)s to %(end)s"
 msgstr "Die Zeilen %(start)s bis %(end)s werden angezeigt"
 
-#: sivvy.py:367
+#: sivvy.py:368
 msgid "Invalid or empty display range. Loading the entire file."
 msgstr "Ungültiger oder leerer Anzeigebereich. Die gesamte Datei wird geladen."
 
-#: sivvy.py:379
+#: sivvy.py:380
 msgid "Index"
 msgstr "Zeile"
 
-#: sivvy.py:384
+#: sivvy.py:386
+#, python-format
+msgid "The current table's output was exported to file '%(file)s'."
+msgstr "Die aktuelle Tabellenansicht wurde in Datei '%(file)s' exportiert."
+
+#: sivvy.py:407
 msgid "Editing column headers"
 msgstr "Bearbeite Spaltenköpfe"
 
-#: sivvy.py:385 sivvy.py:424
+#: sivvy.py:408 sivvy.py:447
 msgid "Enter new values. Leave empty to retain the current value."
 msgstr "Neue Werte eingeben, leer lassen um den aktuellen wert zu behalten."
 
-#: sivvy.py:389
+#: sivvy.py:412
 #, python-format
 msgid "Column %(num)s (current: '%(current)s'): "
 msgstr "Spalte %(num)s (aktuell: '%(current)s'): "
 
-#: sivvy.py:396
+#: sivvy.py:419
 msgid "Column headers have been updated."
 msgstr "Spaltenköpfe wurden aktualisiert."
 
-#: sivvy.py:405
+#: sivvy.py:428
 #, python-format
 msgid ""
 "Row index %(index)s is higher than the maximum number of rows (%(maxrows)s)."
 msgstr ""
 "Zeilenindex %(index)s ist höher als die maximale Zeilenanzahl (%(maxrows)s)."
 
-#: sivvy.py:406
+#: sivvy.py:429
 #, python-format
 msgid "Should the gap be filled with %(rows)s empty rows?"
 msgstr "Soll die Lücke mit %(rows)s leeren Zeilen aufgefüllt werden?"
 
-#: sivvy.py:411
+#: sivvy.py:434
 #, python-format
 msgid "Added %(rows)s empty rows."
 msgstr "%(rows)s leere Zeilen eingefügt."
 
-#: sivvy.py:419
+#: sivvy.py:442
 #, python-format
 msgid "Adding new row %(index)s."
 msgstr "Erstelle neue Zeile %(index)s."
 
-#: sivvy.py:423
+#: sivvy.py:446
 #, python-format
 msgid "Editing row %(index)s"
 msgstr "Bearbeite Zeile %(index)s"
 
-#: sivvy.py:429
+#: sivvy.py:452
 #, python-format
 msgid "%(header)s (current: '%(current)s'): "
 msgstr "%(header)s (aktuell: '%(current)s'): "
 
-#: sivvy.py:437
+#: sivvy.py:460
 #, python-format
 msgid "Row %(index)s has been updated."
 msgstr "Zeile %(index)s wurde aktualisiert."
 
-#: sivvy.py:443 sivvy.py:484
+#: sivvy.py:466 sivvy.py:507
 #, python-format
 msgid "Invalid row index %(index)s. Valid range: 1-%(max)s"
 msgstr "Ungültiger Zeilenindex %(index)s. Gültiger Bereich: 1-%(max)s"
 
-#: sivvy.py:452
+#: sivvy.py:475
 #, python-format
 msgid "Deleting row %(index)s"
 msgstr "Lösche Zeile %(index)s"
 
-#: sivvy.py:457
+#: sivvy.py:480
 msgid "Delete this row?"
 msgstr "Diese Zeile löschen?"
 
-#: sivvy.py:462
+#: sivvy.py:485
 #, python-format
 msgid "Row %(index)s deleted successfully."
 msgstr "Zeile %(index)s erfolgreich gelöscht."
 
-#: sivvy.py:477 sivvy.py:557 sivvy.py:634
+#: sivvy.py:500 sivvy.py:580 sivvy.py:657 sivvy.py:691
 msgid "Aborted."
 msgstr "Abbruch."
 
-#: sivvy.py:493
+#: sivvy.py:516
 #, python-format
 msgid "Displaying row %(index)s"
 msgstr "Betrachte Zeile %(index)s"
 
-#: sivvy.py:506
+#: sivvy.py:529
 msgid "Invalid split command. Usage: <command> <row_number>"
 msgstr "Ungültiger Teilbefehl. Verwendung: <Befehl> <Zeilennummer>"
 
-#: sivvy.py:515
+#: sivvy.py:538
 msgid "Row number must be positive."
 msgstr "Zeilennummer muss positiv sein."
 
-#: sivvy.py:524
+#: sivvy.py:547
 #, python-format
 msgid "Invalid row number: %(number)s"
 msgstr "Ungültige Zeilennummer: %(number)s"
 
-#: sivvy.py:532 sivvy.py:548
+#: sivvy.py:555 sivvy.py:571
 msgid "No deleted rows to restore."
 msgstr "Keine gelöschten Zeilen zum Wiederherstellen."
 
-#: sivvy.py:535
+#: sivvy.py:558
 msgid "Undo History"
 msgstr "Wiederherstellungsverlauf"
 
-#: sivvy.py:537
+#: sivvy.py:560
 msgid "Row"
 msgstr "Zeile"
 
-#: sivvy.py:554
+#: sivvy.py:577
 msgid "Enter number to restore (or press Enter to cancel): "
 msgstr "Nummer zum Wiederherstellen eingeben, Abbruch mit Enter: "
 
-#: sivvy.py:564
+#: sivvy.py:587
 #, python-format
 msgid "Invalid choice. Please enter a number between 1 and %(max)s"
 msgstr "Ungültige Auswahl. Bitte eine Zahl zwischen 1 und %(max)s eingeben"
 
-#: sivvy.py:573
+#: sivvy.py:596
 msgid "Restoring row:"
 msgstr "Zeile wiederherstellen:"
 
-#: sivvy.py:578
+#: sivvy.py:601
 #, python-format
 msgid ""
 "Restore at position (1-%(max)s, or Enter for original position %(orig)s): "
@@ -297,89 +303,113 @@ msgstr ""
 "An Position wiederherstellen (1-%(max)s, oder Enter für die "
 "Ursprungsposition %(orig)s): "
 
-#: sivvy.py:588 sivvy.py:591
+#: sivvy.py:611 sivvy.py:614
 msgid "Invalid position. Using original position."
 msgstr "Ungültige Position. Die Ursprungsposition wird verwendet."
 
-#: sivvy.py:601
+#: sivvy.py:624
 #, python-format
 msgid "Row restored at position %(pos)s"
 msgstr "Zeile an Position %(pos)s wiederhergestellt"
 
-#: sivvy.py:606
+#: sivvy.py:629
 msgid "Invalid input. Please enter a number."
 msgstr "Ungültige Eingabe. Bitte eine Zahl eingeben."
 
-#: sivvy.py:609
+#: sivvy.py:632
 #, python-format
 msgid "Error during undo: %(error)s"
 msgstr "Fehler beim Wiederherstellen: %(error)s"
 
-#: sivvy.py:618
+#: sivvy.py:641
 msgid "Welcome to Sivvy!"
 msgstr "Willkommen bei Sivvy!"
 
-#: sivvy.py:626
+#: sivvy.py:649
 msgid "Command ('h' for help): "
 msgstr "Befehl ('h' für Hilfe): "
 
-#: sivvy.py:630
+#: sivvy.py:653
 msgid "Exit and save changes"
 msgstr "Beenden und Änderungen speichern"
 
-#: sivvy.py:641
+#: sivvy.py:664
 msgid "Status messages cleared."
 msgstr "Statusmeldungen gelöscht."
 
-#: sivvy.py:644
+#: sivvy.py:667
 msgid "Help"
 msgstr "Hilfe"
 
-#: sivvy.py:645
+#: sivvy.py:668
 msgid "The following commands are available:"
 msgstr "Folgende Befehle sind verfügbar:"
 
-#: sivvy.py:646
+#: sivvy.py:669
 msgid "- Enter row number to edit (0 for headers)"
 msgstr "- Zeilenindex zum Bearbeiten eingeben (0 für Spaltenköpfe)"
 
-#: sivvy.py:647
+#: sivvy.py:670
 msgid "- 'd <row_number>' to delete a row"
 msgstr "- 'd <Zeilennummer>' zum Löschen einer Zeile"
 
-#: sivvy.py:648
+#: sivvy.py:671
 msgid "- 'u' to undo/restore deleted rows"
 msgstr "- 'u' zum Wiederherstellen gelöschter Zeilen"
 
-#: sivvy.py:649
+#: sivvy.py:672
 msgid "- 'v <row_number>' to display a row in a more detailed view"
 msgstr "- 'v <Zeilennummer>' für die Detailansicht einer Zeile"
 
-#: sivvy.py:650
+#: sivvy.py:673
+msgid "- 'e' to export current table view as a file"
+msgstr "- 'e' zum Exportieren der aktuellen Tabelle als Datei"
+
+#: sivvy.py:674
 msgid "- 's' to toggle status message display"
 msgstr "- 's' zum Umschalten der Statusmeldungsanzeige"
 
-#: sivvy.py:651
+#: sivvy.py:675
 msgid "- 'c' to clear status messages"
 msgstr "- 'c' zum Bereinigen der Statusmeldungen"
 
-#: sivvy.py:652
+#: sivvy.py:676
 msgid "- 'q' to exit"
 msgstr "- 'q' zum Beenden"
 
-#: sivvy.py:678
+#: sivvy.py:686
+msgid "Table export"
+msgstr "Tabellenexport"
+
+#: sivvy.py:687
+msgid ""
+"This function exports the current table view as a text file in the program's "
+"directory. \n"
+"Enter the desired file name, press Enter for the default file name "
+"'sivvy_output.txt' or 'c' to cancel."
+msgstr ""
+"Diese Funktion exportiert die aktuelle Tabellenansicht als Textdatei in das "
+"Programmverzeichnis. \n"
+"Bitte den gewünschten Dateinamen eingeben, Eingabetaste für den "
+"Standarddateinamen 'sivvy_output.txt' oder 'c' um abzubrechen."
+
+#: sivvy.py:689
+msgid "Export filename (default: 'sivvy_output.txt'): "
+msgstr "Export-Dateiname (Standard: 'sivvy_output.txt'): "
+
+#: sivvy.py:713
 msgid "Invalid row index. Please enter a positive value or 0 for headers."
 msgstr ""
 "Ungültiger Zeilenindex. Bitte einen positiven Wert eingeben oder 0 für die "
 "Spaltenköpfe."
 
-#: sivvy.py:687
+#: sivvy.py:722
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 "Ungültige Eingabe. Bitte eine Zahl eingeben, '0' für die Spaltenköpfe, oder "
 "'q' zum Beenden."
 
-#: sivvy.py:692
+#: sivvy.py:727
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr "Ein unerwarteter Fehler ist aufgetreten: %(error)s"

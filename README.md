@@ -37,6 +37,7 @@ Sivvy also supports a few simple commands for controlling the program. You can c
 * "`d <row_number>`" to delete a row
 * "`u`" to undo/restore deleted rows
 * "`v <row_number>`" to display a row in a more detailed view
+* "`e`" to export current table view as a file
 * "`s`" to toggle status message display (all or 5 most recent messages)
 * "`c`" to clear status messages
 * "`h`" to print a list of available commands

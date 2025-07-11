@@ -37,6 +37,7 @@ Sivvy unterstützt einige einfache Befehle zur Steuerung des Programms. Eine Lis
 * "`d <Zeilennummer>`" zum Löschen einer Zeile
 * "`u`" zum Wiederherstellen gelöschter Zeilen
 * "`v <Zeilennummer>`" für die Detailansicht einer Zeile
+* "`e`" zum Exportieren der aktuellen Tabelle als Datei
 * "`s`" zum Umschalten der Statusmeldungsanzeige (alle oder nur die neusten 5 meldungen)
 * "`c`" zum Bereinigen der Statusmeldungen
 * "`h`" zum Anzeigen der Befehlsliste
