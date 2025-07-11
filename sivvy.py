@@ -50,7 +50,6 @@ class Sivvy:
 
         # Parameters
         self.filename = filename
-        self.output_filename = output_filename
         self.data = []
         self.headers = []
         self.delimiter = ','
@@ -97,6 +96,51 @@ class Sivvy:
         gettext.bindtextdomain('sivvy', str(self.scriptdir / 'locale'))
         gettext.textdomain('sivvy')
         self._ = gettext.gettext
+
+    def _validate_filename(self, filename):
+        """
+        Validates a file name for problematic characters.
+
+        Args:
+            filename (str): file name to validate
+
+        Returns:
+            tuple: (is_valid, error_message)
+                - is_valid (bool): True if valid, False if not valid
+                - error_message (str): Error message for invalid file names
+        """
+        if not filename or not filename.strip():
+            return False, self._("Filename cannot be empty.")
+
+        # Remove whitespace
+        filename = filename.strip()
+
+        # Check for problematic characters (Windows and Unix)
+        invalid_chars = '<>:"/\\|?*'
+        found_invalid = [char for char in invalid_chars if char in filename]
+        if found_invalid:
+            return False, self._("Invalid characters in filename: %(chars)s") % {
+                'chars': ', '.join(found_invalid)
+            }
+
+        # Check for reserved file names (Windows)
+        reserved_names = ['CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3', 'COM4', 
+                         'COM5', 'COM6', 'COM7', 'COM8', 'COM9', 'LPT1', 'LPT2', 'LPT3', 
+                         'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9']
+
+        name_without_ext = filename.split('.')[0].upper()
+        if name_without_ext in reserved_names:
+            return False, self._("'%(name)s' is a reserved filename.") % {'name': filename}
+
+        # Check for long file names (255 chars)
+        if len(filename) > 255:
+            return False, self._("Filename is too long (maximum 255 characters).")
+
+        # Check if file name only contains dots
+        if filename.replace('.', '').strip() == '':
+            return False, self._("Filename cannot consist only of dots.")
+
+        return True, ""
 
     def show_message(self, message, msg_type='info', pause=False, store=True):
         """
@@ -378,19 +422,16 @@ class Sivvy:
             indexed_data.append([original_index] + padded_row[:len(self.headers)]) 
 
         indexed_headers = [self._("Index")] + self.headers
-        if (output_filename):
+        table_output = tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True)
+        if output_filename:
             try:
+                output_path = Path(output_filename)
+                output_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(output_filename, 'w', encoding='utf-8') as f:
-                    print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True), file=f)
-                    self.show_message(
-                        self._("The current table's output was exported to file '%(file)s'.") % {'file': output_filename},
-                        'info'
-                    )
-
-            except FileNotFoundError:
+                    print(table_output, file=f)
                 self.show_message(
-                    self._("File '%(file)s' not found. Creating a new file.") % {'file': output_filename},
-                    'warning',
+                    self._("The current table's output was exported to file '%(file)s'.") % {'file': output_filename},
+                    'info'
                 )
 
             except PermissionError:
@@ -399,8 +440,26 @@ class Sivvy:
                     'error',
                     store=False
                 )
+                print(table_output)
+
+            except OSError as e:
+                self.show_message(
+                    self._("Error saving '%(file)s': %(error)s") % {'file': output_filename, 'error': e},
+                    'error',
+                    store=False
+                )
+                print(table_output)
+                
+            except Exception as e:
+                self.show_message(
+                    self._("An unexpected error occurred while saving: %(error)s") % {'error': e},
+                    'error',
+                    store=False
+                )
+                print(table_output)
+                
         else:
-            print(tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True))
+            print(table_output)
 
     def _edit_headers(self):
         """Edits the column headers."""
@@ -684,15 +743,31 @@ class Sivvy:
                     continue
                 case 'e':
                     print(f"\n--- {self._('Table export')} ---")
-                    print(self._("This function exports the current table view as a text file in the program's directory. \n"
-                                 "Enter the desired file name, press Enter for the default file name 'sivvy_output.txt' or 'c' to cancel."))
-                    filename_value = input(self._("Export filename (default: 'sivvy_output.txt'): ")).strip() or 'sivvy_output.txt'
-                    if filename_value == 'c':
-                        self.show_message(self._("Aborted."), 'info')
-                        continue
-                    else:
-                        self.display_table(self.scriptdir / filename_value)
+                    print(self._("This function exports the current table view as a text file in the program's directory."))
+                    print(self._("Enter the desired file name, press Enter for the default file name 'sivvy_output.txt' or 'c' to cancel."))
+
+                    while True:
+                        filename_input = input(self._("Export filename (default: 'sivvy_output.txt'): ")).strip()
+                        if filename_input.lower() == 'c':
+                            self.show_message(self._("Aborted."), 'info')
+                            break
+                        if not filename_input:
+                            filename_input = 'sivvy_output.txt'
+                        is_valid, error_message = self._validate_filename(filename_input)
+                        if not is_valid:
+                            print(f"❌ {error_message}")
+                            print(self._("Please enter a valid filename."))
+                            continue
+                        export_path = self.scriptdir / filename_input
+                        if export_path.exists():
+                            overwrite = input(self._("File '%(file)s' already exists. Overwrite?") % {'file': filename_input} + " (y/n): ").strip().lower()
+                            if overwrite != 'y':
+                                self.show_message(self._("Aborted."), 'info')
+                                break
+                        self.display_table(export_path)
+                        break
                     continue
+
                 case _:
                     if user_input.startswith('d '):
                         row_index = self._parse_split_command(user_input)
