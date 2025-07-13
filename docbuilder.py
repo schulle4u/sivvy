@@ -4,10 +4,11 @@ import sys
 import os
 from pathlib import Path
 
+
 def convert_markdown_to_html(input_file, output_file=None, output_language="en"):
     """
     Converts markdown file into HTML
-    
+
     Args:
         input_file (str): Path to markdown file
         output_file (str): Path to html output file (optional)
@@ -66,6 +67,7 @@ def convert_markdown_to_html(input_file, output_file=None, output_language="en")
     except Exception as e:
         print(f"Error converting: {e}")
         return False
+
 
 def main():
     """Main function"""

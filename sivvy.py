@@ -181,9 +181,9 @@ class Sivvy:
         if not self.status_messages:
             return
 
-        print("="*50)
+        print("=" * 50)
         print(self._("Status Messages:"))
-        print("="*50)
+        print("=" * 50)
 
         messages_to_show = self.status_messages
         if not self.show_all_messages and len(self.status_messages) > 5:
@@ -193,7 +193,7 @@ class Sivvy:
         for msg in messages_to_show:
             print(f"[{msg['timestamp']}] {msg['message']}")
 
-        print("="*50)
+        print("=" * 50)
 
     def clear_status_messages(self):
         """Deletes all saved messages."""
@@ -310,7 +310,7 @@ class Sivvy:
 
             sniffer = csv.Sniffer()
             dialect = sniffer.sniff(sample)
-            
+
             delimiter_display = self.readable_delimiter(dialect.delimiter)
 
             self.show_message(
@@ -382,7 +382,7 @@ class Sivvy:
 
         if delimiter in non_printable_chars:
             return f"'{delimiter}' ({non_printable_chars[delimiter]})"
-        
+
         elif delimiter.isprintable():
             return f"'{delimiter}'"
 
@@ -508,7 +508,7 @@ class Sivvy:
                     store=False
                 )
                 print(table_output)
-                
+
             except Exception as e:
                 self.show_message(
                     self._("An unexpected error occurred while saving: %(error)s") % {'error': e},
@@ -516,7 +516,7 @@ class Sivvy:
                     store=False
                 )
                 print(table_output)
-                
+
         else:
             print(table_output)
 
@@ -763,7 +763,7 @@ class Sivvy:
 
             self.display_table()
 
-            print("="*50)
+            print("=" * 50)
             user_input = input(self._("Command ('h' for help): ")).strip().lower()
 
             match user_input:
