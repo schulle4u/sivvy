@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sivvy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 21:32+0200\n"
+"POT-Creation-Date: 2025-07-17 13:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Filename cannot consist only of dots."
 msgstr ""
 
-#: sivvy.py:173 sivvy.py:639 sivvy.py:795
+#: sivvy.py:173 sivvy.py:650 sivvy.py:836
 msgid "Press Enter to continue..."
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "File '%(file)s' not found. Creating a new file."
 msgstr ""
 
-#: sivvy.py:294 sivvy.py:498
+#: sivvy.py:294 sivvy.py:509
 #, python-format
 msgid "Permission denied: Cannot access file '%(file)s'."
 msgstr ""
@@ -160,12 +160,12 @@ msgstr ""
 msgid "Saved changes in '%(file)s'."
 msgstr ""
 
-#: sivvy.py:454 sivvy.py:506
+#: sivvy.py:454 sivvy.py:517
 #, python-format
 msgid "Error saving '%(file)s': %(error)s"
 msgstr ""
 
-#: sivvy.py:456 sivvy.py:514
+#: sivvy.py:456 sivvy.py:525
 #, python-format
 msgid "An unexpected error occurred while saving: %(error)s"
 msgstr ""
@@ -183,248 +183,252 @@ msgstr ""
 msgid "Index"
 msgstr ""
 
-#: sivvy.py:492
+#: sivvy.py:503
 #, python-format
 msgid "The current table's output was exported to file '%(file)s'."
 msgstr ""
 
-#: sivvy.py:525
+#: sivvy.py:536
 msgid "Editing column headers"
 msgstr ""
 
-#: sivvy.py:526 sivvy.py:565
+#: sivvy.py:537 sivvy.py:576
 msgid "Enter new values. Leave empty to retain the current value."
 msgstr ""
 
-#: sivvy.py:530
+#: sivvy.py:541
 #, python-format
 msgid "Column %(num)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:537
+#: sivvy.py:548
 msgid "Column headers have been updated."
 msgstr ""
 
-#: sivvy.py:546
+#: sivvy.py:557
 #, python-format
 msgid ""
 "Row index %(index)s is higher than the maximum number of rows (%(maxrows)s)."
 msgstr ""
 
-#: sivvy.py:547
+#: sivvy.py:558
 #, python-format
 msgid "Should the gap be filled with %(rows)s empty rows?"
 msgstr ""
 
-#: sivvy.py:552
+#: sivvy.py:563
 #, python-format
 msgid "Added %(rows)s empty rows."
 msgstr ""
 
-#: sivvy.py:560
+#: sivvy.py:571
 #, python-format
 msgid "Adding new row %(index)s."
 msgstr ""
 
-#: sivvy.py:564
+#: sivvy.py:575
 #, python-format
 msgid "Editing row %(index)s"
 msgstr ""
 
-#: sivvy.py:570
+#: sivvy.py:581
 #, python-format
 msgid "%(header)s (current: '%(current)s'): "
 msgstr ""
 
-#: sivvy.py:578
+#: sivvy.py:589
 #, python-format
 msgid "Row %(index)s has been updated."
 msgstr ""
 
-#: sivvy.py:584 sivvy.py:625
+#: sivvy.py:595 sivvy.py:636
 #, python-format
 msgid "Invalid row index %(index)s. Valid range: 1-%(max)s"
 msgstr ""
 
-#: sivvy.py:593
+#: sivvy.py:604
 #, python-format
 msgid "Deleting row %(index)s"
 msgstr ""
 
-#: sivvy.py:598
+#: sivvy.py:609
 msgid "Delete this row?"
 msgstr ""
 
-#: sivvy.py:603
+#: sivvy.py:614
 #, python-format
 msgid "Row %(index)s deleted successfully."
 msgstr ""
 
-#: sivvy.py:618 sivvy.py:698 sivvy.py:775 sivvy.py:811 sivvy.py:824
+#: sivvy.py:629 sivvy.py:661 sivvy.py:674 sivvy.py:739 sivvy.py:816
 msgid "Aborted."
 msgstr ""
 
-#: sivvy.py:634
+#: sivvy.py:645
 #, python-format
 msgid "Displaying row %(index)s"
 msgstr ""
 
-#: sivvy.py:647
-msgid "Invalid split command. Usage: <command> <row_number>"
-msgstr ""
-
-#: sivvy.py:656
-msgid "Row number must be positive."
-msgstr ""
-
-#: sivvy.py:665
-#, python-format
-msgid "Invalid row number: %(number)s"
-msgstr ""
-
-#: sivvy.py:673 sivvy.py:689
-msgid "No deleted rows to restore."
-msgstr ""
-
-#: sivvy.py:676
-msgid "Undo History"
-msgstr ""
-
-#: sivvy.py:678
-msgid "Row"
-msgstr ""
-
-#: sivvy.py:695
-msgid "Enter number to restore (or press Enter to cancel): "
-msgstr ""
-
-#: sivvy.py:705
-#, python-format
-msgid "Invalid choice. Please enter a number between 1 and %(max)s"
-msgstr ""
-
-#: sivvy.py:714
-msgid "Restoring row:"
-msgstr ""
-
-#: sivvy.py:719
-#, python-format
-msgid ""
-"Restore at position (1-%(max)s, or Enter for original position %(orig)s): "
-msgstr ""
-
-#: sivvy.py:729 sivvy.py:732
-msgid "Invalid position. Using original position."
-msgstr ""
-
-#: sivvy.py:742
-#, python-format
-msgid "Row restored at position %(pos)s"
-msgstr ""
-
-#: sivvy.py:747
-msgid "Invalid input. Please enter a number."
-msgstr ""
-
-#: sivvy.py:750
-#, python-format
-msgid "Error during undo: %(error)s"
-msgstr ""
-
-#: sivvy.py:759
-msgid "Welcome to Sivvy!"
-msgstr ""
-
-#: sivvy.py:767
-msgid "Command ('h' for help): "
-msgstr ""
-
-#: sivvy.py:771
-msgid "Exit and save changes"
-msgstr ""
-
-#: sivvy.py:782
-msgid "Status messages cleared."
-msgstr ""
-
-#: sivvy.py:785
-msgid "Help"
-msgstr ""
-
-#: sivvy.py:786
-msgid "The following commands are available:"
-msgstr ""
-
-#: sivvy.py:787
-msgid "- Enter row number to edit (0 for headers)"
-msgstr ""
-
-#: sivvy.py:788
-msgid "- 'd <row_number>' to delete a row"
-msgstr ""
-
-#: sivvy.py:789
-msgid "- 'u' to undo/restore deleted rows"
-msgstr ""
-
-#: sivvy.py:790
-msgid "- 'v <row_number>' to display a row in a more detailed view"
-msgstr ""
-
-#: sivvy.py:791
-msgid "- 'e' to export current table view as a file"
-msgstr ""
-
-#: sivvy.py:792
-msgid "- 's' to toggle status message display"
-msgstr ""
-
-#: sivvy.py:793
-msgid "- 'c' to clear status messages"
-msgstr ""
-
-#: sivvy.py:794
-msgid "- 'q' to exit"
-msgstr ""
-
-#: sivvy.py:804
+#: sivvy.py:654
 msgid "Table export"
 msgstr ""
 
-#: sivvy.py:805
+#: sivvy.py:655
 msgid ""
 "This function exports the current table view as a text file in the program's "
 "directory."
 msgstr ""
 
-#: sivvy.py:806
+#: sivvy.py:656
 msgid ""
 "Enter the desired file name, press Enter for the default file name "
 "'sivvy_output.txt' or 'c' to cancel."
 msgstr ""
 
-#: sivvy.py:809
+#: sivvy.py:659
 msgid "Export filename (default: 'sivvy_output.txt'): "
 msgstr ""
 
-#: sivvy.py:818
+#: sivvy.py:668
 msgid "Please enter a valid filename."
 msgstr ""
 
-#: sivvy.py:822
+#: sivvy.py:672
 #, python-format
 msgid "File '%(file)s' already exists. Overwrite?"
 msgstr ""
 
-#: sivvy.py:847
+#: sivvy.py:676
+msgid "Include row index in export?"
+msgstr ""
+
+#: sivvy.py:688
+msgid "Invalid split command. Usage: <command> <row_number>"
+msgstr ""
+
+#: sivvy.py:697
+msgid "Row number must be positive."
+msgstr ""
+
+#: sivvy.py:706
+#, python-format
+msgid "Invalid row number: %(number)s"
+msgstr ""
+
+#: sivvy.py:714 sivvy.py:730
+msgid "No deleted rows to restore."
+msgstr ""
+
+#: sivvy.py:717
+msgid "Undo History"
+msgstr ""
+
+#: sivvy.py:719
+msgid "Row"
+msgstr ""
+
+#: sivvy.py:736
+msgid "Enter number to restore (or press Enter to cancel): "
+msgstr ""
+
+#: sivvy.py:746
+#, python-format
+msgid "Invalid choice. Please enter a number between 1 and %(max)s"
+msgstr ""
+
+#: sivvy.py:755
+msgid "Restoring row:"
+msgstr ""
+
+#: sivvy.py:760
+#, python-format
+msgid ""
+"Restore at position (1-%(max)s, or Enter for original position %(orig)s): "
+msgstr ""
+
+#: sivvy.py:770 sivvy.py:773
+msgid "Invalid position. Using original position."
+msgstr ""
+
+#: sivvy.py:783
+#, python-format
+msgid "Row restored at position %(pos)s"
+msgstr ""
+
+#: sivvy.py:788
+msgid "Invalid input. Please enter a number."
+msgstr ""
+
+#: sivvy.py:791
+#, python-format
+msgid "Error during undo: %(error)s"
+msgstr ""
+
+#: sivvy.py:800
+msgid "Welcome to Sivvy!"
+msgstr ""
+
+#: sivvy.py:808
+msgid "Command ('h' for help): "
+msgstr ""
+
+#: sivvy.py:812
+msgid "Exit and save changes"
+msgstr ""
+
+#: sivvy.py:823
+msgid "Status messages cleared."
+msgstr ""
+
+#: sivvy.py:826
+msgid "Help"
+msgstr ""
+
+#: sivvy.py:827
+msgid "The following commands are available:"
+msgstr ""
+
+#: sivvy.py:828
+msgid "- Enter row number to edit (0 for headers)"
+msgstr ""
+
+#: sivvy.py:829
+msgid "- 'd <row_number>' to delete a row"
+msgstr ""
+
+#: sivvy.py:830
+msgid "- 'u' to undo/restore deleted rows"
+msgstr ""
+
+#: sivvy.py:831
+msgid "- 'v <row_number>' to display a row in a more detailed view"
+msgstr ""
+
+#: sivvy.py:832
+msgid "- 'e' to export current table view as a file"
+msgstr ""
+
+#: sivvy.py:833
+msgid "- 's' to toggle status message display"
+msgstr ""
+
+#: sivvy.py:834
+msgid "- 'c' to clear status messages"
+msgstr ""
+
+#: sivvy.py:835
+msgid "- 'q' to exit"
+msgstr ""
+
+#: sivvy.py:865
 msgid "Invalid row index. Please enter a positive value or 0 for headers."
 msgstr ""
 
-#: sivvy.py:856
+#: sivvy.py:874
 msgid "Invalid input. Please enter a number, '0' for headers, or 'q' to exit."
 msgstr ""
 
-#: sivvy.py:861
+#: sivvy.py:879
 #, python-format
 msgid "An unexpected error occurred: %(error)s"
 msgstr ""
