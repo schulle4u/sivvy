@@ -455,7 +455,7 @@ class Sivvy:
         except Exception as e:
             print(self._("An unexpected error occurred while saving: %(error)s") % {'error': e})
 
-    def display_table(self, output_filename=None):
+    def display_table(self, output_filename=None, show_index=True):
         """Displays data in the terminal as a formatted table, optionally with row limit."""
         data_to_display = self.data
         start_row, end_row = None, None
@@ -473,15 +473,26 @@ class Sivvy:
                 self.display_range = None
                 start_row, end_row = None, None
 
-        indexed_data = []
-        for i, row in enumerate(data_to_display):
-            original_index = (i + 1) + (start_row if start_row is not None else 0)
+        if show_index:
+            indexed_data = []
+            for i, row in enumerate(data_to_display):
+                original_index = (i + 1) + (start_row if start_row is not None else 0)
+                padded_row = row + [''] * (len(self.headers) - len(row))
+                indexed_data.append([original_index] + padded_row[:len(self.headers)]) 
 
-            padded_row = row + [''] * (len(self.headers) - len(row))
-            indexed_data.append([original_index] + padded_row[:len(self.headers)]) 
+            indexed_headers = [self._("Index")] + self.headers
+            table_data = indexed_data
+            table_headers = indexed_headers
+        else:
+            table_data = []
+            for row in data_to_display:
+                padded_row = row + [''] * (len(self.headers) - len(row))
+                table_data.append(padded_row[:len(self.headers)])
 
-        indexed_headers = [self._("Index")] + self.headers
-        table_output = tabulate(indexed_data, headers=indexed_headers, tablefmt=self.table_format, disable_numparse=True)
+            table_headers = self.headers
+
+        table_output = tabulate(table_data, headers=table_headers, tablefmt=self.table_format, disable_numparse=True)
+
         if output_filename:
             try:
                 output_path = Path(output_filename)
@@ -823,7 +834,10 @@ class Sivvy:
                             if overwrite != 'y':
                                 self.show_message(self._("Aborted."), 'info')
                                 break
-                        self.display_table(export_path)
+                        show_index_input = input(self._("Include row index in export?") + " (y/n): ").strip().lower()
+                        show_index = show_index_input == 'y'
+
+                        self.display_table(export_path, show_index)
                         break
                     continue
 
