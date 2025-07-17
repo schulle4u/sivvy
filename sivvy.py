@@ -649,6 +649,36 @@ class Sivvy:
 
         input(self._("Press Enter to continue..."))
 
+    def _export_table(self):
+        """Exports current table view as text file"""
+        print(f"\n--- {self._('Table export')} ---")
+        print(self._("This function exports the current table view as a text file in the program's directory."))
+        print(self._("Enter the desired file name, press Enter for the default file name 'sivvy_output.txt' or 'c' to cancel."))
+
+        while True:
+            filename_input = input(self._("Export filename (default: 'sivvy_output.txt'): ")).strip()
+            if filename_input.lower() == 'c':
+                self.show_message(self._("Aborted."), 'info')
+                break
+            if not filename_input:
+                filename_input = 'sivvy_output.txt'
+            is_valid, error_message = self._validate_filename(filename_input)
+            if not is_valid:
+                print(f"❌ {error_message}")
+                print(self._("Please enter a valid filename."))
+                continue
+            export_path = self.scriptdir / filename_input
+            if export_path.exists():
+                overwrite = input(self._("File '%(file)s' already exists. Overwrite?") % {'file': filename_input} + " (y/n): ").strip().lower()
+                if overwrite != 'y':
+                    self.show_message(self._("Aborted."), 'info')
+                    break
+            show_index_input = input(self._("Include row index in export?") + " (y/n): ").strip().lower()
+            show_index = show_index_input == 'y'
+
+            self.display_table(export_path, show_index)
+            break
+
     def _parse_split_command(self, user_input):
         """Parse split commands."""
         parts = user_input.split()
@@ -812,33 +842,7 @@ class Sivvy:
                     self._undo_delete()
                     continue
                 case 'e':
-                    print(f"\n--- {self._('Table export')} ---")
-                    print(self._("This function exports the current table view as a text file in the program's directory."))
-                    print(self._("Enter the desired file name, press Enter for the default file name 'sivvy_output.txt' or 'c' to cancel."))
-
-                    while True:
-                        filename_input = input(self._("Export filename (default: 'sivvy_output.txt'): ")).strip()
-                        if filename_input.lower() == 'c':
-                            self.show_message(self._("Aborted."), 'info')
-                            break
-                        if not filename_input:
-                            filename_input = 'sivvy_output.txt'
-                        is_valid, error_message = self._validate_filename(filename_input)
-                        if not is_valid:
-                            print(f"❌ {error_message}")
-                            print(self._("Please enter a valid filename."))
-                            continue
-                        export_path = self.scriptdir / filename_input
-                        if export_path.exists():
-                            overwrite = input(self._("File '%(file)s' already exists. Overwrite?") % {'file': filename_input} + " (y/n): ").strip().lower()
-                            if overwrite != 'y':
-                                self.show_message(self._("Aborted."), 'info')
-                                break
-                        show_index_input = input(self._("Include row index in export?") + " (y/n): ").strip().lower()
-                        show_index = show_index_input == 'y'
-
-                        self.display_table(export_path, show_index)
-                        break
+                    self._export_table()
                     continue
 
                 case _:
