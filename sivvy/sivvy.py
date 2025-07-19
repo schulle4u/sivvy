@@ -33,7 +33,7 @@ class Sivvy:
         "textile", "tsv"
     ]
 
-    def __init__(self, filename, display_range=None, table_format="simple", output_filename=None):
+    def __init__(self, filename, display_range=None, table_format="simple", column_delimiter=",", manual_delimiter_set=False, output_filename=None):
         # Determine current script directory
         if getattr(sys, 'frozen', False):
             self.scriptdir = Path(sys.executable).parent
@@ -52,7 +52,8 @@ class Sivvy:
         self.filename = filename
         self.data = []
         self.headers = []
-        self.delimiter = ','
+        self.delimiter = column_delimiter
+        self._manual_delimiter = manual_delimiter_set
         self.display_range = display_range
         self.deleted_rows = []  # Saves deleted rows for undo
         self.max_undo_history = 10
@@ -248,14 +249,24 @@ class Sivvy:
                         'warning'
                     )
                     self.headers = self._get_headers_from_user()
-                    self.delimiter = ','
+                    # self.delimiter = ','
                     self._save_csv(initial_save=True)
                     self.show_message(
                         self._("Created empty new file '%(file)s' with headers.") % {'file': self.filename}, 
                         'info'
                     )
                     return
-                self.delimiter = self._detect_delimiter_from_content(content)
+
+                if not self._manual_delimiter:
+                    detected_delimiter = self._detect_delimiter_from_content(content)
+                    if detected_delimiter != self.delimiter:
+                        self.delimiter = detected_delimiter
+                else:
+                    delimiter_display = self.readable_delimiter(self.delimiter)
+                    self.show_message(
+                        self._("Using manually set delimiter: %(delimiter)s") % {'delimiter': delimiter_display},
+                        'info'
+                    )
 
                 csvfile_in_memory = StringIO(content)
                 reader = csv.reader(csvfile_in_memory, delimiter=self.delimiter)
@@ -278,7 +289,7 @@ class Sivvy:
                         'warning'
                     )
                     self.headers = self._get_headers_from_user()
-                    self.delimiter = ','
+                    # self.delimiter = ','
 
         except FileNotFoundError:
             self.show_message(
@@ -286,7 +297,7 @@ class Sivvy:
                 'warning',
             )
             self.headers = self._get_headers_from_user()
-            self.delimiter = ','
+            # self.delimiter = ','
             self._save_csv(initial_save=True)
 
         except PermissionError:
@@ -909,7 +920,46 @@ def main():
              "Available formats: " + ", ".join(Sivvy.SUPPORTED_TABLE_FORMATS)
     )
 
+    parser.add_argument(
+        "-d", "--delimiter",
+        type=str,
+        default=None,
+        help="Manually set a column delimiter if automatic detection fails."
+             "Use 'TAB' for tab character, 'SPACE' for space. Examples: ';', 'TAB', '|'"
+    )
+
     args = parser.parse_args()
+
+    processed_delimiter = ","
+    manual_delimiter_set = False
+
+    if args.delimiter is not None:
+        manual_delimiter_set = True
+        delimiter_input = args.delimiter.strip()
+
+        delimiter_mapping = {
+            'TAB': '\t',
+            'SPACE': ' ',
+            'SEMICOLON': ';',
+            'PIPE': '|',
+            'COMMA': ','
+        }
+
+        if delimiter_input.upper() in delimiter_mapping:
+            processed_delimiter = delimiter_mapping[delimiter_input.upper()]
+        elif len(delimiter_input) == 1:
+            processed_delimiter = delimiter_input
+        else:
+            try:
+                processed_delimiter = delimiter_input.encode().decode('unicode_escape')
+                if len(processed_delimiter) != 1:
+                    print(f"Error: Delimiter must be exactly one character or one of allowed keywords. Got: '{processed_delimiter}' (length: {len(processed_delimiter)})")
+                    print("Valid examples: ';', 'TAB', '|', ','")
+                    sys.exit(1)
+            except Exception as e:
+                print(f"Error: Invalid delimiter '{delimiter_input}': {e}")
+                print("Valid examples: ';', 'TAB', '|', ','")
+                sys.exit(1)
 
     display_range = None
     if args.range:
@@ -927,7 +977,7 @@ def main():
         else:
             print(f"Warning: Invalid range format '{args.range}'. Expecting format 'start-end'.")
 
-    app = Sivvy(args.filename, display_range, args.format)
+    app = Sivvy(args.filename, display_range, args.format, processed_delimiter, manual_delimiter_set)
     app.run()
 
 
