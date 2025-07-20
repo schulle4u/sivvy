@@ -33,6 +33,14 @@ class Sivvy:
         "textile", "tsv"
     ]
 
+    supported_delimiter_keywords = {
+        'TAB': '\t',
+        'SPACE': ' ',
+        'SEMICOLON': ';',
+        'PIPE': '|',
+        'COMMA': ','
+    }
+
     def __init__(self, filename, display_range=None, table_format="simple", column_delimiter=",", manual_delimiter_set=False, output_filename=None):
         # Determine current script directory
         if getattr(sys, 'frozen', False):
@@ -897,7 +905,8 @@ class Sivvy:
 def main():
     parser = argparse.ArgumentParser(
         description="A simple csv editor for your terminal.",
-        epilog="Source code is available at https://github.com/schulle4u/sivvy",
+        epilog="This program is open source, released under the terms of the MIT license.\n"
+               "Source code is available at https://github.com/schulle4u/sivvy",
         formatter_class=argparse.RawTextHelpFormatter
     )
 
@@ -916,7 +925,7 @@ def main():
         "-f", "--format",
         type=str,
         default="simple",
-        help="Defines table output format (e.g. plain, simple, grid, html, latex, tsv). Default: grid.\n"
+        help="Defines table output format (e.g. plain, simple, grid, html, latex, tsv). Default: simple.\n"
              "Available formats: " + ", ".join(Sivvy.SUPPORTED_TABLE_FORMATS)
     )
 
@@ -924,8 +933,9 @@ def main():
         "-d", "--delimiter",
         type=str,
         default=None,
-        help="Manually set a column delimiter if automatic detection fails."
-             "Use 'TAB' for tab character, 'SPACE' for space. Examples: ';', 'TAB', '|'"
+        help="Manually set a column delimiter if automatic detection fails.\n"
+             "Use keywords for special characters. Examples: ';', 'TAB', '|'\n"
+             "Available keywords: " + ", ".join(Sivvy.supported_delimiter_keywords)
     )
 
     args = parser.parse_args()
@@ -937,13 +947,7 @@ def main():
         manual_delimiter_set = True
         delimiter_input = args.delimiter.strip()
 
-        delimiter_mapping = {
-            'TAB': '\t',
-            'SPACE': ' ',
-            'SEMICOLON': ';',
-            'PIPE': '|',
-            'COMMA': ','
-        }
+        delimiter_mapping = Sivvy.supported_delimiter_keywords
 
         if delimiter_input.upper() in delimiter_mapping:
             processed_delimiter = delimiter_mapping[delimiter_input.upper()]
